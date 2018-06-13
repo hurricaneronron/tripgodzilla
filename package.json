@@ -6,9 +6,9 @@
   "scripts": {
     "server": "node server.js",
     "client": "cd client && npm run start",
-    "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon\" \"npm run client\"",
+    "start": "concurrently \"./node_modules/.bin/nodemon\" \"npm run client\"",
     "build": "cd client && npm run build",
-    "deploy": "yarn build && git add . && git commit -m \"Building for production\" && git push heroku master",
+    "deploy": "npm build && git add . && git commit -m \"Building for production\" && git push heroku master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -19,5 +19,14 @@
   },
   "dependencies": {
     "express": "^4.15.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hurricaneronron/finalgroupproject.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/hurricaneronron/finalgroupproject/issues"
+  },
+  "homepage": "https://github.com/hurricaneronron/finalgroupproject#readme"
 }
