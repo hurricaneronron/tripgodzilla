@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/AccountCreation.css";
+import "../styles/Pinboard.css";
 class Pinboard extends React.Component {
 
     render() {

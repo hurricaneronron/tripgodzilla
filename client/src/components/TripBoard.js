@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/AccountCreation.css";
+import "../styles/TripBoard.css";
 class TripBoard extends React.Component {
 
     render() {

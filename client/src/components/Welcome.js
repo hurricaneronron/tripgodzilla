@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/AccountCreation.css";
+import "../styles/Welcome.css";
 class Welcome extends React.Component {
 
     render() {
