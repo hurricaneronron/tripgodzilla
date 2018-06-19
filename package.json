@@ -6,7 +6,7 @@
   "scripts": {
     "server": "node server.js",
     "client": "cd client && npm run start",
-    "start": "concurrently \"./node_modules/.bin/nodemon\" \"npm run client\"",
+    "start": "./node_modules/.bin/concurrently \"npm run server\" \"npm run client\"",
     "build": "cd client && npm run build",
     "deploy": "npm build && git add . && git commit -m \"Building for production\" && git push heroku master",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,7 +18,13 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
-    "express": "^4.15.4"
+    "@google/maps": "^0.4.6",
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.15.4",
+    "google-maps-react": "^2.0.2",
+    "mongoose": "^5.1.5",
+    "react-google-maps": "^9.4.5"
   },
   "repository": {
     "type": "git",
