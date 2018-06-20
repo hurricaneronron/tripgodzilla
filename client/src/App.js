@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-        <Route path="/welcome" component= {Welcome} />
+        <Route path="/Welcome" component= {Welcome} />
         <Route path="/home" component= {Home} />
         <Route path="/login" component= {Login} />
         <Route path="/messages" component= {Messages} />
