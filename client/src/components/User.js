@@ -1,10 +1,15 @@
 import React from "react";
 import "../styles/User.css";
+import Navbar from "./Navbar";
+
 class User extends React.Component {
 
     render() {
         return (
-        <div>User.</div>
+            <div>
+                <Navbar />
+                <div>User.</div>
+            </div>
         )
     }
 }
