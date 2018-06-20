@@ -1,10 +1,14 @@
 import React from "react";
 import "../styles/TripBoard.css";
-class TripBoard extends React.Component {
+import Navbar from "./Navbar";
 
+class TripBoard extends React.Component {
     render() {
         return (
-        <div>TripBoard.</div>
+            <div>
+                <Navbar />
+                <div>Trip Board.</div>
+            </div>
         )
     }
 }
