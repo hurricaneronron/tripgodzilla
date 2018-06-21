@@ -36,9 +36,7 @@ class Messages extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col s12 m3 13">
-                        <RightSidebar />
-                    </div>
+                    <RightSidebar />
                 </div>
             </div>
         )    

@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Home.css";
 import Navbar from "./Navbar";
+import RightSidebar from "./RightSidebar";
 
 class Home extends React.Component {
     render() {
@@ -25,6 +26,7 @@ class Home extends React.Component {
                         </form>
                     </div>
                 </div>
+                <RightSidebar />
             </div>
         )
     }
