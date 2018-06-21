@@ -4,20 +4,20 @@ import UserChatMessage from "./UserChatMessage";
 import FriendChatMessage from "./FriendChatMessage";
 
 const MessageBox = props =>
-        <div class="card">
-            <div class="card-content">
+        <div className="card">
+            <div className="card-content">
             <UserChatMessage />
             <FriendChatMessage />
             <UserChatMessage />
             <FriendChatMessage />
             <UserChatMessage />
             </div>
-            <div class="card-action">
-                <div class="input-field">
-                    <i class="material-icons prefix">mode_edit</i>
-                    <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+            <div className="card-action">
+                <div className="input-field">
+                    <i className="material-icons prefix">mode_edit</i>
+                    <textarea id="icon_prefix2" className="materialize-textarea"></textarea>
                 </div>
-                <a class="waves-effect waves-light btn-small blue darken-4"><i class="material-icons right">send</i>SEND</a>
+                <a className="waves-effect waves-light btn-small blue darken-4"><i className="material-icons right">send</i>SEND</a>
             </div>
         </div>
 

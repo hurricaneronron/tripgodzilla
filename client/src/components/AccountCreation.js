@@ -1,28 +1,28 @@
 import React from "react";
 import "../styles/AccountCreation.css";
-class AccountCreation extends React.Component {
 
+class AccountCreation extends React.Component {
     render() {
         return(
-            <div class="container">
-                <div class="row">
-                    <h1 class="col s12">Create An Account</h1>
+            <div className="container">
+                <div className="row">
+                    <h1 className="col s12">Create An Account</h1>
                 </div>
                 {/* First name
                 Last name
                 (this is how other users will search for you) */}
-                <div class="row">
-                    <form class="col s6">
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="username" type="text" class="validate" />
-                                <label for="username" class="active">Choose Your Username</label>
+                <div className="row">
+                    <form className="col s6">
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <input id="username" type="text" className="validate" />
+                                <label for="username" className="active">Choose Your Username</label>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="password" type="password" class="validate" />
-                                <label for="password" class="active">Create A Password</label>
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <input id="password" type="password" className="validate" />
+                                <label for="password" className="active">Create A Password</label>
                             </div>
                         </div>
                     </form>
@@ -59,10 +59,10 @@ class AccountCreation extends React.Component {
                         </p>
                     </form>
                 </div>
-                <div class="row">
-                    <div class="col s6"></div>
-                    <div class="col s6">
-                    <button class="btn waves-effect waves-light btn-large" type="submit" name="action">CREATE YOUR ACCOUNT!<i class="material-icons right">send</i></button>
+                <div className="row">
+                    <div className="col s6"></div>
+                    <div className="col s6">
+                    <button className="btn waves-effect waves-light btn-large" type="submit" name="action">CREATE YOUR ACCOUNT!<i className="material-icons right">send</i></button>
                     </div>
                 </div>
             </div>

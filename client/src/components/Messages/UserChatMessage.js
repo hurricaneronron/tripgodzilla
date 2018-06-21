@@ -1,9 +1,9 @@
 import React from "react";
 
 const UserChatMessage = props =>
-<div class="card-panel blue darken-2 z-depth-1">
-    <div class="row valign-wrapper">
-        <span class="white-text">
+<div className="card-panel blue darken-2 z-depth-1">
+    <div className="row valign-wrapper">
+        <span className="white-text">
         User chat message.
         </span>
     </div>
