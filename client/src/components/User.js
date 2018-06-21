@@ -3,7 +3,6 @@ import "../styles/User.css";
 import Navbar from "./Navbar";
 
 class User extends React.Component {
-
     render() {
         return (
             <div>

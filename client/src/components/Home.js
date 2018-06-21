@@ -7,18 +7,18 @@ class Home extends React.Component {
         return (
             <div>
                 <Navbar />
-                <div class="container">
+                <div className="container">
                 {/* Welcome, username! */}
-                    <div class="row">
-                        <form class="col s12">
-                            <div class="row">
-                                <div class="col s10">
+                    <div className="row">
+                        <form className="col s12">
+                            <div className="row">
+                                <div className="col s10">
                                     Enter a Location:
-                                    <div class="input-field inline">
+                                    <div className="input-field inline">
                                         <input id="location_inline" type="email" />
                                     </div>
-                                    <button class="btn-small waves-effect waves-light" type="submit" name="action">
-                                        <i class="material-icons right">send</i>
+                                    <button className="btn-small waves-effect waves-light" type="submit" name="action">
+                                        <i className="material-icons right">send</i>
                                     </button>
                                 </div>
                             </div>
