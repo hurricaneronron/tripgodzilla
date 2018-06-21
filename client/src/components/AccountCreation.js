@@ -8,6 +8,9 @@ class AccountCreation extends React.Component {
                 <div class="row">
                     <h1 class="col s12">Create An Account</h1>
                 </div>
+                {/* First name
+                Last name
+                (this is how other users will search for you) */}
                 <div class="row">
                     <form class="col s6">
                         <div class="row">
