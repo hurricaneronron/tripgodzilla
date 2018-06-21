@@ -2,7 +2,7 @@ import React from "react";
 
 const Navbar = props =>
 <nav>
-  <div class="nav-wrapper">
+  <div class="nav-wrapper blue darken-4">
     <a href="" class="brand-logo left">LOGO</a>
       <ul id="nav-mobile" class="right">
       <li><a href="sass.html">Home</a></li>

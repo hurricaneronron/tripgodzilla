@@ -8,17 +8,16 @@ class Home extends React.Component {
             <div>
                 <Navbar />
                 <div class="container">
+                {/* Welcome, username! */}
                     <div class="row">
                         <form class="col s12">
                             <div class="row">
-                                <div class="col s8">
+                                <div class="col s10">
                                     Enter a Location:
                                     <div class="input-field inline">
                                         <input id="location_inline" type="email" />
                                     </div>
-                                </div>
-                                <div class="col s4">
-                                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                                    <button class="btn-small waves-effect waves-light" type="submit" name="action">
                                         <i class="material-icons right">send</i>
                                     </button>
                                 </div>
