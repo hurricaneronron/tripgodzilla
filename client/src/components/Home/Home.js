@@ -33,7 +33,6 @@ class Home extends React.Component {
                                 <h5>Search Results</h5>
                                 <Results />
                                 <Results />
-                                <AddToTrip />
                             </div>
                         </div>
                     </div>
