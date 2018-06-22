@@ -7,7 +7,7 @@ const Navbar = props =>
       <ul id="nav-mobile" className="right">
       <li><a href="/Home">Home</a></li>
       <li><a href="/User">User</a></li>
-      <li><a href="/Trips">Trips</a></li>
+      <li><a href="/TripsHome">Trips</a></li>
       <li><a href="/Messages">Messages</a></li>
       <li><a href="/Welcome">Logout</a></li>
     </ul>
