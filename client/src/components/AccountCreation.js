@@ -16,13 +16,13 @@ class AccountCreation extends React.Component {
                         <div className="row">
                             <div className="input-field col s6">
                                 <input id="username" type="text" className="validate" />
-                                <label for="username" className="active">Choose Your Username</label>
+                                <label htmlFor="username" className="active">Choose Your Username</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s6">
                                 <input id="password" type="password" className="validate" />
-                                <label for="password" className="active">Create A Password</label>
+                                <label htmlFor="password" className="active">Create A Password</label>
                             </div>
                         </div>
                     </form>

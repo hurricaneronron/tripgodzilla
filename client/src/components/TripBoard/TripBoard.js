@@ -1,6 +1,6 @@
 import React from "react";
-import "../styles/TripBoard.css";
-import Navbar from "./Navbar";
+import "../../styles/TripBoard.css";
+import Navbar from "../Navbar";
 
 class TripBoard extends React.Component {
     render() {

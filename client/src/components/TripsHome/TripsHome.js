@@ -1,6 +1,6 @@
 import React from "react";
-import "../styles/Pinboard.css";
-import Navbar from "./Navbar";
+import "../../styles/Pinboard.css";
+import Navbar from "../Navbar";
 
 class TripsHome extends React.Component {
     render() {
