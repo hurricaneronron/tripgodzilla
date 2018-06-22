@@ -3,6 +3,8 @@ import "../../styles/TripBoard.css";
 import Navbar from "../Navbar";
 import RightSidebar from "../RightSidebar";
 import TripItems from "./TripItems";
+import TripComments from "./TripComments";
+import TripNotes from "./TripNotes";
 
 class TripBoard extends React.Component {
     render() {
@@ -25,6 +27,9 @@ class TripBoard extends React.Component {
                                 <TripItems />
                             </div>
                         </div>
+                        <TripComments />
+                        <div className="divider"></div>
+                        <TripNotes />
                     </div>
                 <RightSidebar />
                 </div>
