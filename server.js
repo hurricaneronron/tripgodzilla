@@ -1,7 +1,14 @@
 const express = require("express");
+const mongoose = require('mongoose');
 const path = require("path");
+var bodyparser = require('body-parser');
 const PORT = process.env.PORT || 3001;
 const app = express();
+mongoose.connect('mongodb://localhost/myusersDB')
+
+app.use(bodyparser.urlencoded({extended: true}))
+app.use(bodyparser.json())
+app.use(require('./routes/apiroutes'))
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

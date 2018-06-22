@@ -10,7 +10,7 @@ class Welcome extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col s2 push-s2 pull-s2"><a className="waves-effect waves-light btn-large" href="/Login">SIGN IN</a></div>
-                    <div className="col s2 push-s2 pull-s2"><a className="waves-effect waves-light btn-large" href="/SignUp">SIGN UP</a></div>
+                    <div className="col s2 push-s2 pull-s2"><a className="waves-effect waves-light btn-large" href="/AccountCreation">SIGN UP</a></div>
                 </div>
             </div>
         ) 

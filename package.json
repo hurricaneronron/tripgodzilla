@@ -18,7 +18,9 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
-    "express": "^4.15.4"
+    "body-parser": "^1.18.3",
+    "express": "^4.15.4",
+    "mongoose": "^5.1.6"
   },
   "repository": {
     "type": "git",
