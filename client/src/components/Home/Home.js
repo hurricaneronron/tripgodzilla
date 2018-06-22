@@ -1,8 +1,10 @@
 import React from "react";
-import "../styles/Home.css";
-import Navbar from "./Navbar";
+import "../../styles/Home.css";
+import Navbar from "../Navbar";
 import LeftSidebar from "./LeftSidebar";
-import RightSidebar from "./RightSidebar";
+import RightSidebar from "../RightSidebar";
+import Results from "../Home/Results";
+import AddToTrip from "./AddToTrip";
 
 class Home extends React.Component {
     render() {
@@ -14,7 +16,7 @@ class Home extends React.Component {
                     <div className="col s12 m7">
                         <div className="container">
                             <div className="row">
-                                <h5>Enter A Location</h5>
+                                <h5>Search A Location</h5>
                             </div>
                             <div className="row">
                                 <div className="input-field col s12 m7">
@@ -24,9 +26,14 @@ class Home extends React.Component {
                             </div>
                             <div className="row">
                                 <div className="col s12 m7">
+                                Map goes here.
                                 </div>
                             </div>
-                            {/* <Results /> */}
+                            <div className="row">
+                                <h5>Search Results</h5>
+                                <Results />
+                                <Results />
+                            </div>
                         </div>
                     </div>
                 <RightSidebar />

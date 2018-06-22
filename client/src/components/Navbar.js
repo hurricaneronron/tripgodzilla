@@ -9,6 +9,7 @@ const Navbar = props =>
       <li><a href="/User">User</a></li>
       <li><a href="/Trips">Trips</a></li>
       <li><a href="/Messages">Messages</a></li>
+      <li><a href="/Welcome">Logout</a></li>
     </ul>
   </div>
 </nav>
