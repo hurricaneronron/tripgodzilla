@@ -33,6 +33,8 @@ handleSignIn (e, value) {
                 /// HERE: there needs to be a redirection to the home page after
                 //localStorage is set - will figure out - might have to do with 
                 //setting validation?
+                this.refs.userIdInput.value=""
+                this.refs.passwordInput.value=""
             }
             else{
                 alert("Sorry, some of your information is incorrect.")
@@ -52,13 +54,13 @@ handleSignIn (e, value) {
                     <form className="col s6">
                         <div className="row">
                             <div className="input-field col s6">
-                                <input id="username" type="text" className="validate" name="userId" onChange={this.handleInputChange}/>
+                                <input id="username" type="text" className="validate" ref="userIdInput" name="userId" onChange={this.handleInputChange}/>
                                 <label htmlFor="username" className="active">Enter Your Username</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s6">
-                                <input id="password" type="password" className="validate" name="password" onChange={this.handleInputChange}/>
+                                <input id="password" type="password" className="validate" ref="passwordInput" name="password" onChange={this.handleInputChange}/>
                                 <label htmlFor="password" className="active">Enter Your Password</label>
                             </div>
                         </div>
