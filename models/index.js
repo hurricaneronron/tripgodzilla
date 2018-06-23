@@ -1,4 +1,5 @@
 module.exports = {
-    User: require('./usermodel')
+    User: require('./usermodel'),
+    Chatbox: require('./chatboxmodel')
   }
   

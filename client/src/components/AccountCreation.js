@@ -48,10 +48,14 @@ class AccountCreation extends React.Component {
                 password: password
             })
             .then(r => {
+                alert(`Successful Account Creation, ${name}! Please Login.`)
                 console.log(r)
                 axios.get('/users')
                 .then(r => {
                     console.log(r)
+                    this.refs.userIdInput.value=""
+                    this.refs.userNameInput.value=""
+                    this.refs.passwordInput.value=""
                 })
                 .catch(e => {
                     console.log(e)
@@ -77,19 +81,19 @@ class AccountCreation extends React.Component {
                     <form className="col s6">
                         <div className="row">
                             <div className="input-field col s6">
-                                <input id="userid" type="text" className="validate" onChange={this.handleInputChange} name="userId"/>
+                                <input id="userid" type="text" className="validate" ref="userIdInput" onChange={this.handleInputChange} name="userId"/>
                                 <label htmlFor="userid" className="active">Create Your User Id</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s6">
-                                <input id="username" type="text" className="validate" onChange={this.handleInputChange} name="username"/>
+                                <input id="username" type="text" className="validate" ref="userNameInput" onChange={this.handleInputChange} name="username"/>
                                 <label htmlFor="username" className="active">Set Your User Name</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s6">
-                                <input id="password" type="password" className="validate" onChange={this.handleInputChange} name="password"/>
+                                <input id="password" type="password" className="validate" ref="passwordInput" onChange={this.handleInputChange} name="password"/>
                                 <label htmlFor="password" className="active">Create a Password</label>
                             </div>
                         </div>
