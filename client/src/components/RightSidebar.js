@@ -9,7 +9,7 @@ import RecentMessages from "./RecentMessages";
 class RightSidebar extends React.Component {
     render() {
         return (
-            <div className="col s12 m3">
+            <div className="col s12 m3 l3">
                 <div className="container">
                     <div className="row">
                         <h6>Add to Trip</h6>

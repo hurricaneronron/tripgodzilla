@@ -5,8 +5,35 @@ import RightSidebar from "../RightSidebar";
 import YourFilters from "./YourFilters";
 import YourFriends from "./YourFriends";
 import FriendRequests from "./FriendRequests";
+import axios from 'axios'
 
 class User extends React.Component {
+    state = {
+        filters: [],
+        friends: []
+    }
+    componentDidMount () {
+        this.loadElements()
+        console.log("working")
+    }
+
+    loadElements = () => {
+        axios.get('/users/' + localStorage.getItem("userId"))
+        .then(r => {
+            console.log(r)
+            let i
+            var filtersArray = []
+            for (i=0; i<r.data[0].filters.length; i++){
+                filtersArray.push({filter: r.data[0].filters[i]})
+            }
+            console.log(filtersArray)
+            this.setState({filters: filtersArray})
+        })
+        .catch(e => {
+            console.log(e)
+        })
+    }
+
     render() {
         return (
             <div>
@@ -17,10 +44,13 @@ class User extends React.Component {
                             <div className="col s12 m5 left">
                                 <div className="row">
                                     <h5>Your Filters</h5>
-                                </div>
-                                <YourFilters />
-                                <YourFilters />
-                                <YourFilters />
+                                </div> 
+                                {this.state.filters.map(filter => {
+                                return (<YourFilters 
+                                    key =  {filter.filter}
+                                    name = {filter.filter}
+                                    />)
+                                })}
                             </div>
                             <div className="col s12 m4 right">
                                 <div className="row">
