@@ -61,7 +61,6 @@ class Messages extends React.Component {
             messagee: messagee
         })
         .then(r => {
-            alert(`Successful ChatBox Creation, ${this.state.name}!`)
             this.loadMessageBoxes()
             this.refs.chatCreateInput.value=""
         })

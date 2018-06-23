@@ -8,19 +8,7 @@ const LeftSidebar = props =>
             <p>
                 <label>
                     <input type="checkbox" class="filled-in" />
-                    <span>PROPS.FILTERS</span>
-                </label>
-            </p>
-            <p>
-                <label>
-                    <input type="checkbox" class="filled-in" />
-                    <span>PROPS.FILTERS</span>
-                </label>
-            </p>
-            <p>
-                <label>
-                    <input type="checkbox" class="filled-in" />
-                    <span>PROPS.FILTERS</span>
+                    <span>{props.name}</span>
                 </label>
             </p>
         </form>

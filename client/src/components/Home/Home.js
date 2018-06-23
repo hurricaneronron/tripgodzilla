@@ -5,14 +5,45 @@ import LeftSidebar from "./LeftSidebar";
 import RightSidebar from "../RightSidebar";
 import Results from "../Home/Results";
 import AddToTrip from "./AddToTrip";
+import axios from 'axios'
 
 class Home extends React.Component {
+    state = {
+        filters: [],
+        friends: []
+    }
+    componentDidMount () {
+        this.loadElements()
+        console.log("working")
+    }
+
+    loadElements = () => {
+        axios.get('/users/' + localStorage.getItem("userId"))
+        .then(r => {
+            console.log(r)
+            let i
+            var filtersArray = []
+            for (i=0; i<r.data[0].filters.length; i++){
+                filtersArray.push({filter: r.data[0].filters[i]})
+            }
+            console.log(filtersArray)
+            this.setState({filters: filtersArray})
+        })
+        .catch(e => {
+            console.log(e)
+        })
+    }
     render() {
         return (
             <div>
                 <Navbar />
                 <div className="row">
-                <LeftSidebar />
+                {this.state.filters.map(filter => {
+                    return (<LeftSidebar 
+                        key =  {filter.filter}
+                        name = {filter.filter}
+                    />)
+                })}
                     <div className="col s12 m7">
                         <div className="container">
                             <div className="row">

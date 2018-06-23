@@ -40,30 +40,50 @@ class AccountCreation extends React.Component {
         var name = this.state.username
         var password = this.state.password 
         if(id.length > 1 && name.length > 1 && password.length > 1) {
-            axios.post('/users', {
-                userId: id,
-                name: name,
-                filters: userFilters,
-                friends: [],
-                password: password
-            })
-            .then(r => {
-                alert(`Successful Account Creation, ${name}! Please Login.`)
-                console.log(r)
-                axios.get('/users')
+            axios.get('/users')
                 .then(r => {
-                    console.log(r)
-                    this.refs.userIdInput.value=""
-                    this.refs.userNameInput.value=""
-                    this.refs.passwordInput.value=""
+                    var existingIds = []
+                    let i
+                    //console.log(r.data)
+                    for (i=0; i<r.data.length; i++) {
+                        existingIds.push(r.data[i].userId)
+                    }
+                var exists = existingIds.indexOf(id)
+                if (exists  == -1) {
+                    axios.post('/users', {
+                        userId: id,
+                        name: name,
+                        filters: userFilters,
+                        friends: [],
+                        password: password
+                    })
+                    .then(r => {
+                        alert(`Successful Account Creation, ${name}! Please Login.`)
+                        console.log(r)
+                    axios.get('/users')
+                    .then(r => {
+                        console.log(r)
+                        this.refs.userIdInput.value=""
+                        this.refs.userNameInput.value=""
+                        this.refs.passwordInput.value=""
+                    })
+                    .catch(e => {
+                        console.log(e)
+                    })
                 })
                 .catch(e => {
                     console.log(e)
                 })
+                } else {
+                    alert("Sorry! That userId already exists. Please try another.")
+                    this.refs.userIdInput.value=""
+                    this.refs.userNameInput.value=""
+                    this.refs.passwordInput.value=""
+                }
             })
-          .catch(e => {
-            console.log(e)
-          })
+            .catch(e => {
+                console.log(e)
+            })
         } else {
             alert("Oops! One of the required fields does not have sufficient quantity!")
         }

@@ -4,8 +4,9 @@ const YourTrips = props =>
 <div className="row">
     <div className="card">
         <div className="card-content">
-            <span className="card-title">PROPS.TRIPNAME</span>
-            <p>PROPS.TRIPDESCRIPTION</p>
+            <span className="card-title">{props.name}</span>
+            <p>{props.description}</p>
+            <p>Users: {props.userArray}</p>
         </div>
         <div className="card-action">
             <div className="row">

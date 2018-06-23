@@ -72,7 +72,7 @@ class MessageBox extends React.Component {
     render() {
         return(
         <div className="card">
-            <div className="card-content">
+            <div className="card-content" style={{overflowY: 'scroll', height: 400}}>
             {this.state.messages.map(box => {
                 return (<UserChatMessage 
                     user = {box.user}
