@@ -1,11 +1,13 @@
 import React from "react";
 import "../styles/Login.css";
-import axios from 'axios'
+import axios from 'axios';
+import {Redirect} from "react-router-dom";
 
 class Login extends React.Component {
 state = {
     userId: "",
-    password: ""
+    password: "",
+    toHome: false
 }
 handleInputChange = event => {
     // Destructure the name and value properties off of event.target
@@ -35,6 +37,9 @@ handleSignIn (e, value) {
                 //setting validation?
                 this.refs.userIdInput.value=""
                 this.refs.passwordInput.value=""
+                this.setState({
+                    toHome: true
+                })
             }
             else{
                 alert("Sorry, some of your information is incorrect.")
@@ -45,6 +50,9 @@ handleSignIn (e, value) {
         })
 }
     render() {
+        if (this.state.toHome === true) {
+            return <Redirect to='/Home' />
+          }
         return(
             <div className="container">
                 <div className="row">
