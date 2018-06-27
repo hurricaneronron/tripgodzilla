@@ -1,12 +1,24 @@
 import React from "react";
 import RecentMessages from "./RecentMessages";
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     var elems = document.querySelectorAll('select');
-//     var instances = M.FormSelect.init(elems, options);
-//   });
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 class RightSidebar extends React.Component {
+state = {
+    select: ""
+}
+
+handleChange = event => {
+    this.setState({
+        select: event.target.value
+    })
+}
+
     render() {
         return (
             <div className="col s12 m3 l3">
@@ -31,14 +43,21 @@ class RightSidebar extends React.Component {
                             </div>
                         </div>
                         <div className="row">
-                            {/* <div className="input-field">
-                                <select multiple>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                </select>
-                                <label>Select Your Trip(s)</label>
-                            </div> */}
+                        <InputLabel htmlFor="age-simple">Select Trip: </InputLabel>
+                            <Select
+                                value={this.state.select}
+                                onChange={this.handleChange}
+                                inputProps={{
+                                name: 'select',
+                                }}
+                            >
+                                <MenuItem value="">
+                                <em>None</em>
+                                </MenuItem>
+                                <MenuItem value={10}>Ten</MenuItem>
+                                <MenuItem value={20}>Twenty</MenuItem>
+                                <MenuItem value={30}>Thirty</MenuItem>
+                            </Select>
                         </div>
                         <div className="row">
                             <a className="waves-effect waves-light btn-small blue darken-4">ADD</a>
