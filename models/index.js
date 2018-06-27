@@ -1,6 +1,7 @@
 module.exports = {
     User: require('./usermodel'),
     Chatbox: require('./chatboxmodel'),
-    Pinboard: require('./pinboardmodel')
+    Pinboard: require('./pinboardmodel'),
+    friendRequest: require('./friendrequest')
   }
   

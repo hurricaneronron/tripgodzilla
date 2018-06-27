@@ -12,10 +12,21 @@ Router.get('/users', function (req, res) {
     })
 })
 
-//get user info by stored user id
+//get user info by stored userid
 Router.get('/users/:userid', function (req, res) {
   // req.params.id
   db.User.find( {userId: req.params.userid })
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+//alter friends array of user found by userid - includes deletes
+Router.put('/users/friends/:userid', function (req, res) {
+  // req.params.id
+  db.User.update({userId: req.params.userid}, {$set:{friends: req.body.friends}})
     .then(r => {
       res.json(r)
     })
@@ -41,6 +52,7 @@ Router.post('/users', function (req, res) {
       console.log(e)
     })
 })
+
 //chatboxes gets, posts, puts
 Router.get('/chatboxes', function (req, res) {
   db.Chatbox.find({})
@@ -79,6 +91,7 @@ Router.get('/chatboxes/indivbox/:id', function (req, res) {
     })
 })
 
+//update chatbox found by its id
 Router.put('/chatboxes/indivbox/:id', function (req, res) {
   // req.params.id
   db.Chatbox.update({_id: req.params.id}, {$set:{messages: req.body.messages}})
@@ -171,6 +184,57 @@ Router.post('/pinboards', function (req, res) {
     userArray: req.body.userArray,
     contentArray: req.body.contentArray
   })
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+//handle friend requests below
+
+//post a new friend request, unaccepted
+Router.post('/friendrequests', function (req, res) {
+  // req.body
+  db.friendRequest.create({
+    requester: req.body.requester,
+    requestee: req.body.requestee,
+    accepted: req.body.accepted
+  })
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+
+//get unaccepted friend requests by userid 
+Router.get('/friendrequests/:userid', function (req, res) {
+  // req.params.id
+  db.friendRequest.find( {$and: [{requestee: req.params.userid}, {accepted: false}]})
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+//get unaccepted friend requests by userid and friendid TO OTHER PERSON NOT TO THIS USER
+Router.get('/friendrequests/pending/:userid/:friendid', function (req, res) {
+  // req.params.id
+  db.friendRequest.find( {$and: [{requester: req.params.userid}, {requestee: req.params.friendid}, {accepted: false}]})
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+//update friend request to 'true' using individual id of request - no longer shows up in pending requests
+Router.put('/friendrequests/:id', function (req, res) {
+  // req.params.id
+  db.friendRequest.update( {_id: req.params.id}, {$set:{accepted: true}})
     .then(r => {
       res.json(r)
     })
