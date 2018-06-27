@@ -38,12 +38,19 @@ class Home extends React.Component {
             <div>
                 <Navbar />
                 <div className="row">
+                <div className="col s12 m2">
+                <div className="container">
+                    <div className="row">
+                        <h6>Filters</h6>
+                    </div>
+                </div>
                 {this.state.filters.map(filter => {
                     return (<LeftSidebar 
                         key =  {filter.filter}
                         name = {filter.filter}
                     />)
                 })}
+                </div>
                     <div className="col s12 m7">
                         <div className="container">
                             <div className="row">
