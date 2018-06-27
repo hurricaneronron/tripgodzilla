@@ -12,6 +12,7 @@ class Messages extends React.Component {
         userId: localStorage.getItem("userId"),
         name: localStorage.getItem("name")
     }
+    
     componentDidMount () {
         this.loadMessageBoxes()
     }
@@ -64,9 +65,9 @@ class Messages extends React.Component {
             this.loadMessageBoxes()
             this.refs.chatCreateInput.value=""
         })
-      .catch(e => {
-        console.log(e)
-      })
+        .catch(e => {
+            console.log(e)
+        })
     }
 
     render() {
