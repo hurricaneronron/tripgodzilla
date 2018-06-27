@@ -1,12 +1,14 @@
 import React from "react";
 import "../styles/AccountCreation.css";
-import axios from "axios"
+import axios from "axios";
+import {Redirect} from "react-router-dom";
 
 class AccountCreation extends React.Component {
     state = {
         userId: "",
         username: "",
-        password: ""
+        password: "",
+        toLogin: false
     }
     handleInputChange = event => {
         // Destructure the name and value properties off of event.target
@@ -66,6 +68,9 @@ class AccountCreation extends React.Component {
                         this.refs.userIdInput.value=""
                         this.refs.userNameInput.value=""
                         this.refs.passwordInput.value=""
+                        this.setState({
+                            toLogin: true
+                        })
                     })
                     .catch(e => {
                         console.log(e)
@@ -89,6 +94,9 @@ class AccountCreation extends React.Component {
         }
       };
     render() {
+        if (this.state.toLogin === true) {
+            return <Redirect to='/Login' />
+          }
         return(
             <div className="container">
                 <div className="row">
