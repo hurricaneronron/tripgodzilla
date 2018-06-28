@@ -19,7 +19,7 @@ class TripsHome extends React.Component {
     loadPinboards = () => {
         axios.get('/pinboards/' + localStorage.getItem("userId"))
             .then(r => {
-                console.log(r)
+                console.log("existing", r)
                 let i
                 var boardArray = []
                 for (i=0; i<r.data.length; i++){
@@ -44,7 +44,7 @@ class TripsHome extends React.Component {
     handleCreate = () => {
         var name = this.state.name
         var description = this.state.description
-        var fixArray = [localStorage.getItem("userId"), "someoneelse"]
+        var fixArray = [localStorage.getItem("userId")]
         this.setState({usersArray: fixArray})
        //the setState above isn't working, will fix console.log(this.state.usersArray)
        if(name.length > 0) {
@@ -58,7 +58,6 @@ class TripsHome extends React.Component {
             console.log(r)
             this.refs.name.value=""
             this.refs.description.value=""
-            this.refs.users.value=""
             this.loadPinboards()
         })
       .catch(e => {
@@ -89,11 +88,6 @@ class TripsHome extends React.Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="input-field">
-                                        <textarea placeholder="Users" id="trip_description" name ="users" ref="users" onChange={this.handleInputChange} className="materialize-textarea"></textarea>
-                                    </div>
-                                </div>
-                                <div className="row">
                                     <a className="waves-effect waves-light btn-small blue darken-4 right" onClick={this.handleCreate}>CREATE</a>
                                 </div>
                             </form>
@@ -101,6 +95,7 @@ class TripsHome extends React.Component {
                             {this.state.pinboards.map(board => {
                                 return (<YourTrips 
                                     key =  {board.board}
+                                    id = {board.board}
                                     name = {board.name}
                                     description = {board.description}
                                     userArray = {board.userArray}
