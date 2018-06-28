@@ -7,7 +7,7 @@ const LeftSidebar = props =>
         <form action="#">
             <p>
                 <label>
-                    <input type="checkbox" class="filled-in" />
+                    <input type="checkbox" className="filled-in" />
                     <span>{props.name}</span>
                 </label>
             </p>
