@@ -34,7 +34,17 @@ Router.put('/users/friends/:userid', function (req, res) {
       console.log(e)
     })
 })
-
+//alter filters array of user from by userid - includes deletes
+Router.put('/users/filters/:userid', function (req, res) {
+  // req.params.id
+  db.User.update({userId: req.params.userid}, {$set:{filters: req.body.filters}})
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
 Router.post('/users', function (req, res) {
   // req.body
   db.User.create({
@@ -117,7 +127,23 @@ Router.post('/chatboxes', function (req, res) {
     })
 })
 
-//pinboards gets posts puts
+//pinboards gets, posts, puts below
+Router.post('/pinboards', function (req, res) {
+  // req.body
+  db.Pinboard.create({
+    name: req.body.name,
+    admin: req.body.admin,
+    description: req.body.description,
+    userArray: req.body.userArray,
+    contentArray: req.body.contentArray
+  })
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
 Router.get('/pinboards', function (req, res) {
   db.Pinboard.find({})
     .then(r => {
@@ -165,7 +191,8 @@ Router.put('/pinboards/indiv/newcontent/:id', function (req, res) {
 })
 
 //for adding a user to a board found by id
-Router.put('/pinboards/indiv/newuser/:id', function (req, res) {
+//or deleting someone from the user Array
+Router.put('/pinboards/indiv/userupdate/:id', function (req, res) {
   // req.params.id
   db.Pinboard.update({_id: req.params.id}, {$set:{userArray: req.body.userArray}})
     .then(r => {
@@ -176,21 +203,6 @@ Router.put('/pinboards/indiv/newuser/:id', function (req, res) {
     })
 })
 
-Router.post('/pinboards', function (req, res) {
-  // req.body
-  db.Pinboard.create({
-    name: req.body.name,
-    description: req.body.description,
-    userArray: req.body.userArray,
-    contentArray: req.body.contentArray
-  })
-    .then(r => {
-      res.json(r)
-    })
-    .catch(e => {
-      console.log(e)
-    })
-})
 //handle friend requests below
 
 //post a new friend request, unaccepted
@@ -235,6 +247,44 @@ Router.get('/friendrequests/pending/:userid/:friendid', function (req, res) {
 Router.put('/friendrequests/:id', function (req, res) {
   // req.params.id
   db.friendRequest.update( {_id: req.params.id}, {$set:{accepted: true}})
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+//nonfunctional delete attempt to delete a friend request by id
+Router.delete('/friendrequests/delete/:id', function (req, res) {
+  //console.log(objectid)
+  db.friendRequest.remove({_id: req.params.id})
+  .then(r => {
+    res.json(r)
+  })
+  .catch(e => {
+    console.log(e)
+  })
+})
+
+//trip comments handled below
+Router.post('/tripcomments', function (req, res) {
+  // req.body
+  db.TripComment.create({
+    userid: req.body.userid,
+    tripid: req.body.tripid,
+    comment: req.body.comment,
+    timestamp: req.body.timestamp
+  })
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+//gets trip comments by a tripid
+Router.get('/tripcomments/:tripid', function (req, res) {
+  db.TripComment.find({tripid: req.params.tripid})
     .then(r => {
       res.json(r)
     })

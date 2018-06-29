@@ -23,10 +23,10 @@ class TripsHome extends React.Component {
                 let i
                 var boardArray = []
                 for (i=0; i<r.data.length; i++){
-                    boardArray.push({board: r.data[i]._id, name:r.data[i].name, description: r.data[i].description, userArray: r.data[i].userArray })
+                    boardArray.push({board: r.data[i]._id, name:r.data[i].name, description: r.data[i].description, userArray: r.data[i].userArray, contentArray: r.data[i].contentArray })
                 }
-                console.log(boardArray)
                 this.setState({pinboards: boardArray})
+                console.log("pinboards", this.state.pinboards[0].contentArray)
             })
             .catch(e => {
                 console.log(e)
@@ -50,6 +50,7 @@ class TripsHome extends React.Component {
        if(name.length > 0) {
         axios.post('/pinboards', {
             name: name,
+            admin: localStorage.getItem("userId"),
             description: description,
             userArray: fixArray,
             contentArray: []

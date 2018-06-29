@@ -20,6 +20,7 @@ class YourFriends extends React.Component {
                 })
                 .then(r => {
                     console.log(r)
+                    window.location.reload()
                 })
                 .catch(e => {
                     console.log(e)

@@ -32,6 +32,9 @@ handleSignIn (e, value) {
                 localStorage.setItem("id", r.data[0]._id)
                 localStorage.setItem("name", r.data[0].name)
                 localStorage.setItem("userId", r.data[0].userId)
+                localStorage.removeItem("selectedBoxId")
+                localStorage.removeItem("trip")
+                localStorage.removeItem("tripId")
                 /// HERE: there needs to be a redirection to the home page after
                 //localStorage is set - will figure out - might have to do with 
                 //setting validation?
