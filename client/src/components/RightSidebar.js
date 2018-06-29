@@ -7,6 +7,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import MessageBox from "./Messages/MessageBox";
+import "../styles/RightSidebar.css";
 
 class RightSidebar extends React.Component {
 state = {
@@ -21,8 +23,8 @@ handleChange = event => {
 
     render() {
         return (
-            <div className="col s12 m3 l3">
-                <div className="container">
+            <div className="col s12 m3 l3 yellow">
+                <div id="container">
                     <div className="row">
                         <h6>Add to Trip</h6>
                     </div>
@@ -67,7 +69,7 @@ handleChange = event => {
                     <div className="row">
                         <h6>Recent Messages</h6>
                     </div>
-                    <RecentMessages />
+                <MessageBox />
                 </div>
             </div>
         )
