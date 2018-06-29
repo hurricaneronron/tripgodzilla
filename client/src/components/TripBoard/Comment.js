@@ -4,9 +4,9 @@ const Comment = props =>
 <div className="card">
     <div className="card-content">
         <a className="waves-effect waves-light red darken-4 btn-small right">X</a>
-        <span className="card-title">PROPS.USERNAME</span>
-        <p>PROPS.DATE</p>
-        <p>PROPS.TRIPCOMMENT</p>
+        <span className="card-title">{props.user}</span>
+        <p>{props.comment}</p>
+        <p>{props.timestamp}</p>
     </div>
 </div>
 

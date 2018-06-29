@@ -39,12 +39,12 @@ class FriendRequests extends React.Component {
                         console.log(e)
                     })
                 axios.get('/users/' + requester)
-                        .then(r => {
-                            let i
-                            var friendsArray = r.data[0].friends
-                            friendsArray.push(requestee)
-                            console.log(friendsArray)
-                            this.setState({friendFriends: friendsArray})
+                    .then(r => {
+                        let i
+                        var friendsArray = r.data[0].friends
+                        friendsArray.push(requestee)
+                        console.log("check", friendsArray)
+                        this.setState({friendFriends: friendsArray})
                         axios.put('/users/friends/' + requester, {
                                 friends: this.state.friendFriends
                         })
@@ -54,11 +54,23 @@ class FriendRequests extends React.Component {
                         .catch(e => {
                             console.log(e)
                         })
-                        })
-                        .catch(e => {
-                            console.log(e)
-                        })
+                    })
+                    .catch(e => {
+                        console.log(e)
+                    })
                 window.location.reload()
+        }
+        handleDecline = (e, value) => {
+            var id = e.target.name
+            console.log("idtodelete", id)
+            axios.delete('/friendrequests/delete/' + id, {_id: id})
+            .then(r => {
+                console.log(r)
+                window.location.reload()
+            })
+            .catch(e => {
+                console.log(e)
+            })
         }
 
         render () {
@@ -66,7 +78,7 @@ class FriendRequests extends React.Component {
         <div className="row">
                 <p>Friend Request from: {this.props.requester}</p>
                 <a className="waves-effect waves-light blue darken-4 btn-small" name= {this.props.id} id= {this.props.requester} onClick={this.handleAccept.bind(this)}>ACCEPT</a>
-                <a className="waves-effect waves-light red darken-4 btn-small">DECLINE</a>
+                <a className="waves-effect waves-light red darken-4 btn-small" name={this.props.id} onClick={this.handleDecline}>DECLINE</a>
         </div>
         )
         }

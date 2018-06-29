@@ -3,14 +3,22 @@ import Navbar from "../Navbar";
 import CurrentMessages from "./CurrentMessages";
 import MessageBox from "./MessageBox";
 import RightSidebar from "../RightSidebar";
-import axios from 'axios'
+import axios from 'axios';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 class Messages extends React.Component {
     state = {
+        select: "",
         messageBoxes: [],
         selectedBox: localStorage.getItem("selectedBoxId"),
         userId: localStorage.getItem("userId"),
-        name: localStorage.getItem("name")
+        name: localStorage.getItem("name"),
+        friends: []
     }
     
     componentDidMount () {
@@ -42,11 +50,28 @@ class Messages extends React.Component {
             .catch(e => {
                 console.log(e)
             })
+            axios.get('/users/' + this.state.userId)
+            .then(r => {
+                console.log(r)
+                let i
+                var friends = []
+                for (i=0; i<r.data[0].friends.length; i++){
+                    friends.push({friend: r.data[0].friends[i]})
+                }
+                console.log(friends)
+                this.setState({friends: friends})
+                })
+            .catch(e => {
+                console.log(e)
+            })
     }
 
     handleInputChange = event => {
         // Destructure the name and value properties off of event.target
         // Update the appropriate state
+        this.setState({
+            select: event.target.value,
+        })
         const { name, value } = event.target;
         this.setState({
           [name]: value
@@ -54,7 +79,7 @@ class Messages extends React.Component {
     };
 
     handleCreateChat (e, value) {
-        var messagee = this.state.messagee
+        var messagee = this.state.select
         var messager = this.state.userId
         console.log(messagee)
         axios.post('/chatboxes', {
@@ -81,8 +106,26 @@ class Messages extends React.Component {
                                 <h5>Start New Chat</h5>
                             </div>
                             <div className="row">
-                                <div className="input-field col s12 m5">
-                                    <input placeholder="Enter Username" id="username" type="text" ref="chatCreateInput" onChange={this.handleInputChange} name="messagee"/>
+                                <div className="col s12 m5">
+                                <InputLabel htmlFor="age-simple">Select Friend: </InputLabel>
+                                <Select
+                                    value={this.state.select}
+                                    onChange={this.handleInputChange}
+                                    inputProps={{
+                                    name: 'select',
+                                    }}
+                                >
+                                <MenuItem value="">
+                                <em>None</em>
+                                </MenuItem>
+                                {this.state.friends.map(friend => {
+                                return (<MenuItem 
+                                    key = {friend.friend}
+                                    value =  {friend.friend}
+                                    name = {friend.friend}
+                                    >{friend.friend}</MenuItem>)
+                                })}
+                                </Select>
                                 </div>
                             </div>
                             <div className="row">

@@ -6,6 +6,9 @@ var pinboardmodel = new Schema({
     name: {
         type: String
     },
+    admin: {
+        type: String
+    },
     description: {
         type: String
     },
