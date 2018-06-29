@@ -5,8 +5,8 @@ const Navbar = props =>
 <nav>
   <div className="nav-wrapper blue darken-4">
     <a href="" className="brand-logo left">LOGO</a>
-    <p id="WelcomeMessage">Welcome, {localStorage.getItem("name")}!</p>
-      <ul id="nav-mobile" className="right">
+    <ul id="nav-mobile" className="right">
+      <li><a id="WelcomeMessage">Welcome, {localStorage.getItem("name")}!</a></li>
       <li><a href="/Home">Home</a></li>
       <li><a href="/User">User</a></li>
       <li><a href="/TripsHome">Trips</a></li>
