@@ -9,6 +9,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import axios from 'axios'
 import MessageBox from "./Messages/MessageBox";
+import "../styles/RightSidebar.css";
+
 
 class RightSidebar extends React.Component {
 state = {
@@ -87,7 +89,7 @@ handleAdd = () => {
     render() {
         return (
             <div className="col s12 m3 l3">
-                <div className="container">
+                <div id="container">
                 <div className="row">
                         <h6>Chat</h6>
                     </div>
