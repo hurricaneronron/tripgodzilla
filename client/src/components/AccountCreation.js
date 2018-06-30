@@ -108,21 +108,26 @@ class AccountCreation extends React.Component {
                 <div className="row">
                     <form className="col s6">
                         <div className="row">
+                            <h6>Choose A UserID</h6>
+                            <p>(This must be unique and is how other users will search for you)</p>
                             <div className="input-field col s6">
                                 <input id="userid" type="text" className="validate" ref="userIdInput" onChange={this.handleInputChange} name="userId"/>
-                                <label htmlFor="userid" className="active">Create Your User Id</label>
+                                <label htmlFor="userid" className="active">UserID</label>
                             </div>
                         </div>
                         <div className="row">
+                            <h6>Choose A Display Name</h6>
+                            <p>(This is the name that will be displayed throughout the site)</p>
                             <div className="input-field col s6">
                                 <input id="username" type="text" className="validate" ref="userNameInput" onChange={this.handleInputChange} name="username"/>
-                                <label htmlFor="username" className="active">Set Your User Name</label>
+                                <label htmlFor="username" className="active">Display Name</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s6">
+                                <h6>Choose A Password</h6>
                                 <input id="password" type="password" className="validate" ref="passwordInput" onChange={this.handleInputChange} name="password"/>
-                                <label htmlFor="password" className="active">Create a Password</label>
+                                <label htmlFor="password" className="active">Password</label>
                             </div>
                         </div>
                     </form>
@@ -161,7 +166,7 @@ class AccountCreation extends React.Component {
                 <div className="row">
                     <div className="col s6"></div>
                     <div className="col s6">
-                    <button className="btn waves-effect waves-light btn-large" type="submit" name="action" onClick={this.handleAccountCreation.bind(this)}>CREATE YOUR ACCOUNT!<i className="material-icons right">send</i></button>
+                    <button className="btn waves-effect waves-light btn-large yellow black-text" type="submit" name="action" onClick={this.handleAccountCreation.bind(this)}>CREATE YOUR ACCOUNT!<i className="material-icons right">send</i></button>
                     </div>
                 </div>
                 </div>

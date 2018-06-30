@@ -14,14 +14,15 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-        <Route path="/Welcome" component= {Welcome} />
+        <Route exact path="/" component= {Welcome} />
+        <Route exact path="/Welcome" component= {Welcome} />
         <Route path="/AccountCreation" component= {AccountCreation} />
-        <Route path="/login" component= {Login} />
-        <Route path="/home" component= {Home} />
-        <Route path="/user" component= {User} />
-        <Route path="/tripshome" component= {TripsHome} />
-        <Route path="/tripboard" component= {TripBoard} />
-        <Route path="/messages" component= {Messages} />
+        <Route path="/Login" component= {Login} />
+        <Route path="/Home" component= {Home} />
+        <Route path="/User" component= {User} />
+        <Route path="/TripsHome" component= {TripsHome} />
+        <Route path="/Tripboard" component= {TripBoard} />
+        <Route path="/Messages" component= {Messages} />
       </div>
       </BrowserRouter>
     )
