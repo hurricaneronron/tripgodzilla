@@ -4,13 +4,9 @@ import Navbar from "../Navbar";
 import RightSidebar from "../RightSidebar";
 import TripItems from "./TripItems";
 import TripComments from "./TripComments";
-import TripNotes from "./TripNotes";
 import axios from 'axios';
-import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 class TripBoard extends React.Component {
@@ -40,10 +36,10 @@ class TripBoard extends React.Component {
             var boardArray = []
             if(r.data[0].contentArray.length > 0) {
                 for (i=0; i<r.data[0].contentArray.length; i++){
-                    boardArray.push({item: r.data[0].contentArray[i] })
+                    boardArray.push({id: r.data[0]._id, item: r.data[0].contentArray[i], admin: r.data[0].admin})
                 }
             }
-            console.log(boardArray)
+            console.log("look here", boardArray)
             this.setState({tripItems: boardArray})
         })
         .catch(e => {
@@ -54,7 +50,6 @@ class TripBoard extends React.Component {
                 console.log(r)
                 let i
                 var friends = []
-                var userArray = []
                 for (i=0; i<r.data[0].friends.length; i++){
                     friends.push({friend: r.data[0].friends[i]})
                 }
@@ -78,7 +73,7 @@ class TripBoard extends React.Component {
             }
             console.log(userArray)
             if (this.state.select.length > 0) {
-                if (userArray.indexOf(this.state.select) == -1) {
+                if (userArray.indexOf(this.state.select) === -1) {
                     var newFriend = this.state.select
                     userArray.push(newFriend)
                     console.log("check here", userArray)
@@ -148,9 +143,11 @@ class TripBoard extends React.Component {
                             <div id="pinboard">
                                 {this.state.tripItems.map(item => {
                                     return (<TripItems 
-                                        key =  {item.item}
+                                        key =  {item.id}
+                                        id = {item.id}
                                         item = {item.item.name}
                                         link = {item.item.link}
+                                        admin = {item.admin}
                                         description = {item.item.description}
                                         />)
                                 })}

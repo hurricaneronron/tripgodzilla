@@ -4,11 +4,8 @@ import CurrentMessages from "./CurrentMessages";
 import MessageBox from "./MessageBox";
 import RightSidebar from "../RightSidebar";
 import axios from 'axios';
-import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 class Messages extends React.Component {
@@ -134,7 +131,7 @@ class Messages extends React.Component {
                             <div className="divider"></div>
                             <div className="row">
                                 <div className="col s12 m4 left">
-                                    <h5>Current Messages</h5>
+                                    <h5>Your Chats</h5>
                                     {this.state.messageBoxes.map(box => {
                                     return (<CurrentMessages 
                                         key =  {box.box}
@@ -145,7 +142,7 @@ class Messages extends React.Component {
                                     })}
                                 </div>
                                 <div className="col s12 m5 right">
-                                <h5>Chat ID={this.state.selectedBox}</h5>
+                                <h5>Current Chat</h5>
                                 <MessageBox />
                                 </div>
                             </div>

@@ -6,6 +6,9 @@ var tripcomment = new Schema({
     userid: {
         type: String
     },
+    admin: {
+        type: String
+    },
     tripid: {
         type: String
     },

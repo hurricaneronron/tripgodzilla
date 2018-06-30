@@ -1,7 +1,6 @@
 import React from "react";
 // import "../../styles/MessageBox";
 import UserChatMessage from "./UserChatMessage";
-import FriendChatMessage from "./FriendChatMessage";
 import axios from 'axios'
 
 class MessageBox extends React.Component {

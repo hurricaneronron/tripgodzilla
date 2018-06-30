@@ -42,21 +42,30 @@ class TripComments extends React.Component {
         var userid = localStorage.getItem("userId")
         var tripid = localStorage.getItem("tripId")
         var timestamp = moment().format("LLLL")
-        axios.post('/tripcomments', {
-            userid: userid,
-            tripid: tripid,
-            timestamp: timestamp,
-            comment: this.state.comment
-        })
+        axios.get("/pinboards/indivboard/" + tripid)
         .then(r => {
-            console.log(r)
-            this.refs.comment.value=""
-            this.loadElements()
-
-        })
+            var admin = r.data[0].admin
+            console.log(admin)
+            axios.post('/tripcomments', {
+                userid: userid,
+                admin: admin,
+                tripid: tripid,
+                timestamp: timestamp,
+                comment: this.state.comment
+            })
+            .then(r => {
+                console.log(r)
+                this.refs.comment.value=""
+                this.loadElements()
+            })
         .catch(e => {
             console.log(e)
         })
+    })
+    .catch(e => {
+        console.log(e)
+    })
+
 
     }
     render() {
@@ -66,7 +75,9 @@ class TripComments extends React.Component {
         {this.state.commentsArray.map(comment => {
                 return (<Comment 
                     key = {comment._id}
+                    id = {comment._id}
                     user = {comment.userid}
+                    admin = {comment.admin}
                     comment = {comment.comment}
                     timestamp = {comment.timestamp}
                 />)
