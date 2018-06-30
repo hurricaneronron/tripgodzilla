@@ -38,7 +38,7 @@ class Home extends React.Component {
                 <Navbar />
                 <div className="row">
                 <div className="col s12 m2">
-                <div className="container">
+                <div id="container">
                     <div className="row">
                         <h6>Filters</h6>
                     </div>
@@ -51,7 +51,7 @@ class Home extends React.Component {
                 })}
                 </div>
                     <div className="col s12 m7">
-                        <div className="container">
+                        <div id="container">
                             <div className="row">
                                 <h5>Search A Location</h5>
                             </div>
