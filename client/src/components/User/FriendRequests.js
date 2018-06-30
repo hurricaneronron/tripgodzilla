@@ -20,7 +20,6 @@ class FriendRequests extends React.Component {
                     })
                 axios.get('/users/' + requestee)
                     .then(r => {
-                        let i
                             var userArray = r.data[0].friends
                             userArray.push(requester)
                             console.log(userArray)
@@ -40,7 +39,6 @@ class FriendRequests extends React.Component {
                     })
                 axios.get('/users/' + requester)
                     .then(r => {
-                        let i
                         var friendsArray = r.data[0].friends
                         friendsArray.push(requestee)
                         console.log("check", friendsArray)

@@ -4,7 +4,6 @@ import Navbar from "../Navbar";
 import LeftSidebar from "./LeftSidebar";
 import RightSidebar from "../RightSidebar";
 import Results from "../Home/Results";
-import AddToTrip from "./AddToTrip";
 import axios from 'axios'
 
 class Home extends React.Component {

@@ -5,7 +5,10 @@ import RightSidebar from "../RightSidebar";
 import YourFilters from "./YourFilters";
 import YourFriends from "./YourFriends";
 import FriendRequests from "./FriendRequests";
-import axios from 'axios'
+import axios from 'axios';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 class User extends React.Component {
     state = {
@@ -64,7 +67,34 @@ class User extends React.Component {
             console.log(e)
         })
     }
-
+    handleAddFilter = () => {
+        var addFilter = this.state.select
+        axios.get('/users/' + localStorage.getItem("userId"))
+        .then(r => {
+            console.log(r)
+            var filtersArray = r.data[0].filters
+            if (filtersArray.indexOf(addFilter) === -1) {
+                filtersArray.push(addFilter)
+                console.log(filtersArray)
+                axios.put('/users/filters/' + localStorage.getItem("userId"), {
+                    filters: filtersArray
+                    })
+                    .then(r => {
+                        console.log(r)
+                        window.location.reload()
+                    })
+                    .catch(e => {
+                        console.log(e)
+                    })
+                }
+                else {
+                    alert("You've already added that filter!")
+                }
+        })
+        .catch(e => {
+                console.log(e)
+        })
+    }
     handleFriendRequest = () => {
         console.log("working")
         var requestee = this.state.requestee
@@ -73,7 +103,7 @@ class User extends React.Component {
                 .then(r => {
                 var requesterFriends = r.data[0].friends
                 var exists = requesterFriends.indexOf(requestee)
-                if (exists  == -1) {
+                if (exists  === -1) {
                     axios.get(`/friendrequests/pending/${requester}/${requestee}`)
                     .then(r => {
                         if (r.data.length > 0){
@@ -129,6 +159,26 @@ class User extends React.Component {
                                     name = {filter.filter}
                                     />)
                                 })}
+                                <div className="row">
+                                    <InputLabel htmlFor="age-simple">Add a Filter: </InputLabel>
+                                    <Select
+                                        value={this.state.select}
+                                        onChange={this.handleInputChange}
+                                        inputProps={{
+                                        name: 'select',
+                                        }}
+                                    >
+                                    <MenuItem value="">
+                                    <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value="historical sites">Historical Sites</MenuItem>
+                                    <MenuItem value="haunted sites">Haunted Sites</MenuItem>
+                                    <MenuItem value="roadside attractions">Roadside Attractions</MenuItem>
+                                    </Select>
+                                </div>
+                                <div className="row">
+                                    <a className="waves-effect waves-light btn yellow black-text" onClick={this.handleAddFilter}>add</a>
+                                </div>
                             </div>
                             <div className="col s12 m4 right">
                                 <div className="row">

@@ -101,10 +101,22 @@ Router.get('/chatboxes/indivbox/:id', function (req, res) {
     })
 })
 
-//update chatbox found by its id
+//update chatbox's content, found by its id
 Router.put('/chatboxes/indivbox/:id', function (req, res) {
   // req.params.id
   db.Chatbox.update({_id: req.params.id}, {$set:{messages: req.body.messages}})
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+
+//update/remove chatbox's messager or messagee, found by its id
+Router.put('/chatboxes/removebox/:id', function (req, res) {
+  // req.params.id
+  db.Chatbox.update({_id: req.params.id}, {$set:{messager: req.body.messager, messagee: ""}})
     .then(r => {
       res.json(r)
     })
@@ -178,7 +190,7 @@ Router.get('/pinboards/indivboard/:id', function (req, res) {
     })
 })
 
-//for adding content to a board found by id
+//for adding content to or deleting content from a board found by id
 Router.put('/pinboards/indiv/newcontent/:id', function (req, res) {
   // req.params.id
   db.Pinboard.update({_id: req.params.id}, {$set:{contentArray: req.body.contentArray}})
@@ -254,7 +266,7 @@ Router.put('/friendrequests/:id', function (req, res) {
       console.log(e)
     })
 })
-//nonfunctional delete attempt to delete a friend request by id
+//to delete a friend request by id
 Router.delete('/friendrequests/delete/:id', function (req, res) {
   //console.log(objectid)
   db.friendRequest.remove({_id: req.params.id})
@@ -271,6 +283,7 @@ Router.post('/tripcomments', function (req, res) {
   // req.body
   db.TripComment.create({
     userid: req.body.userid,
+    admin: req.body.admin,
     tripid: req.body.tripid,
     comment: req.body.comment,
     timestamp: req.body.timestamp
@@ -291,6 +304,17 @@ Router.get('/tripcomments/:tripid', function (req, res) {
     .catch(e => {
       console.log(e)
     })
+})
+//to delete a trip comment by id
+Router.delete('/tripcomments/delete/:id', function (req, res) {
+  //console.log(objectid)
+  db.TripComment.remove({_id: req.params.id})
+  .then(r => {
+    res.json(r)
+  })
+  .catch(e => {
+    console.log(e)
+  })
 })
 // Router.put('/users:id', function (req, res) {
 //   // req.params.id

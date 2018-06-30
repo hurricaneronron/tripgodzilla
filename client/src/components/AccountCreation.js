@@ -51,7 +51,7 @@ class AccountCreation extends React.Component {
                         existingIds.push(r.data[i].userId)
                     }
                 var exists = existingIds.indexOf(id)
-                if (exists  == -1) {
+                if (exists  === -1) {
                     axios.post('/users', {
                         userId: id,
                         name: name,

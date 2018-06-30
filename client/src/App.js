@@ -7,7 +7,7 @@ import TripsHome from "./components/TripsHome/TripsHome";
 import TripBoard from "./components/TripBoard/TripBoard";
 import User from "./components/User/User";
 import Welcome from "./components/Welcome";
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 class App extends Component {
   render() {

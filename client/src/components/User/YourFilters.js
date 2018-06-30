@@ -7,7 +7,6 @@ class YourFilters extends React.Component {
                 axios.get('/users/' + localStorage.getItem("userId"))
                 .then(r => {
                     console.log(r)
-                    let i
                     var filtersArray = r.data[0].filters
                     var exFilterIndex = filtersArray.indexOf(remove)
                         console.log(exFilterIndex)
@@ -18,6 +17,7 @@ class YourFilters extends React.Component {
                         })
                         .then(r => {
                                 console.log(r)
+                                window.location.reload()
                         })
                         .catch(e => {
                                 console.log(e)

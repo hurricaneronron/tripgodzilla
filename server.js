@@ -4,6 +4,15 @@ const path = require("path");
 var bodyparser = require('body-parser');
 const PORT = process.env.PORT || 3001;
 const app = express();
+//socket
+var server = require("http").createServer(app);
+var io = require("socket.io")(server)
+
+io.on("connection", (socket) => {
+  console.log("Socket is connected...")
+})
+server.listen(3020);
+//end socket
 mongoose.connect('mongodb://localhost/myusersDB')
 
 app.use(bodyparser.urlencoded({extended: true}))
