@@ -1,9 +1,11 @@
 import React from "react";
 import axios from 'axios'
+import socketIOClient from 'socket.io-client';
 class FriendRequests extends React.Component {
         state = {
                 userFriends: [],
-                friendFriends: []
+                friendFriends: [],
+                endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
         }
         handleAccept = (e, value) => {
                 var id = e.target.name
@@ -25,10 +27,31 @@ class FriendRequests extends React.Component {
                             console.log(userArray)
                             this.setState({userFriends: userArray})
                         axios.put('/users/friends/' + requestee, {
-                                friends: this.state.userFriends
+                            friends: this.state.userFriends
                         })
                         .then(r => {
                                 console.log(r)
+                                axios.get('/users/' + requester)
+                                .then(r => {
+                                    var friendsArray = r.data[0].friends
+                                    friendsArray.push(requestee)
+                                    console.log("check", friendsArray)
+                                    this.setState({friendFriends: friendsArray})
+                                    axios.put('/users/friends/' + requester, {
+                                            friends: this.state.friendFriends
+                                        })
+                                        .then(r => {
+                                            console.log(r)
+                                            const socket = socketIOClient(this.state.endpoint)
+                                            socket.emit('update page', "meaningless content")
+                                        })
+                                        .catch(e => {
+                                            console.log(e)
+                                        })
+                                    })
+                                .catch(e => {
+                                    console.log(e)
+                                })
                         })
                         .catch(e => {
                                 console.log(e)
@@ -37,26 +60,6 @@ class FriendRequests extends React.Component {
                     .catch(e => {
                         console.log(e)
                     })
-                axios.get('/users/' + requester)
-                    .then(r => {
-                        var friendsArray = r.data[0].friends
-                        friendsArray.push(requestee)
-                        console.log("check", friendsArray)
-                        this.setState({friendFriends: friendsArray})
-                        axios.put('/users/friends/' + requester, {
-                                friends: this.state.friendFriends
-                        })
-                        .then(r => {
-                            console.log(r)
-                        })
-                        .catch(e => {
-                            console.log(e)
-                        })
-                    })
-                    .catch(e => {
-                        console.log(e)
-                    })
-                window.location.reload()
         }
         handleDecline = (e, value) => {
             var id = e.target.name

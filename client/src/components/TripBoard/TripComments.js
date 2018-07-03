@@ -2,10 +2,12 @@ import React from "react";
 import Comment from "./Comment"
 import axios from 'axios'
 import moment from 'moment'
+import socketIOClient from 'socket.io-client';
 
 class TripComments extends React.Component {
     state = {
-        commentsArray: []
+        commentsArray: [],
+        endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
     }
     componentDidMount () {
         this.loadElements()
@@ -56,7 +58,8 @@ class TripComments extends React.Component {
             .then(r => {
                 console.log(r)
                 this.refs.comment.value=""
-                this.loadElements()
+                const socket = socketIOClient(this.state.endpoint)
+                socket.emit('update page', "meaningless content")
             })
         .catch(e => {
             console.log(e)
