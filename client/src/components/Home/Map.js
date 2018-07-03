@@ -59,7 +59,7 @@ const MapWithASearchBox = compose(
         const markerArray = []
         
         if (nextProps.passBounds !== this.props.passBounds) {
-            axios.get('/users', {params: 
+            axios.get('/haunted', {params: 
                 {
                 bounds: bounds
                 }

@@ -118,7 +118,6 @@ class Home extends React.Component {
                                     passBounds = {this.state.newBounds}
                                     onDragEnd = {this.onDragEnd}
                                     getVenues = {this.getVenues}
-                                    getLabels = {this.getLabels.bind(this)}
                                 >
                                 </MapWithASearchBox>
                                 </div>
