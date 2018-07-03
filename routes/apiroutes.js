@@ -43,6 +43,7 @@ Router.post('/users', function (req, res) {
 Router.get('/chatboxes', function (req, res) {
   db.Chatbox.find({})
     .then(r => {
+      
       res.json(r)
     })
     .catch(e => {
@@ -111,5 +112,61 @@ Router.post('/chatboxes', function (req, res) {
 // Router.delete('/users:id', function (req, res) {
 //   // req.params.id
 // })
+
+Router.get('/haunted', function (req, res) {
+  const bounds = JSON.parse(req.query.bounds)
+  const south = bounds.south
+  const west = bounds.west
+  const north = bounds.north
+  const east = bounds.east
+  console.log(bounds)
+  db.Haunted.find({})
+    .where('longitude').gte(west).lte(east)
+    .where('latitude').gte(south).lte(north)
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+
+Router.post('/haunted', function (req, res) {
+  db.Haunted.create({
+    id: req.body.id,
+    title: req.body.title,
+    location: req.body.location
+  })
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+
+Router.get('/national', function (req, res) {
+  db.National.find({})
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+
+Router.post('/national', function (req, res) {
+  db.National.create({
+    id: req.body.id,
+    title: req.body.title,
+    location: req.body.location
+  })
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
 
 module.exports = Router

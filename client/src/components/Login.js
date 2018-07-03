@@ -22,10 +22,10 @@ handleSignIn (e, value) {
     axios.get('/users/'+userId)
         .then(r => {
             console.log(r)
-            if (r.data.length == 0) {
+            if (r.data.length === 0) {
                 alert("Sorry, we don't recognize your User Id.")
             }
-            if(r.data[0].password == password) {
+            if(r.data[0].password === password) {
                 alert(`Successful login, ${r.data[0].name}!`)
                 localStorage.setItem("id", r.data[0]._id)
                 localStorage.setItem("name", r.data[0].name)

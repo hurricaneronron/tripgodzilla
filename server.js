@@ -4,7 +4,7 @@ const path = require("path");
 var bodyparser = require('body-parser');
 const PORT = process.env.PORT || 3001;
 const app = express();
-mongoose.connect('mongodb://localhost/myusersDB')
+mongoose.connect('mongodb://localhost/Historical')
 
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(bodyparser.json())
@@ -20,6 +20,7 @@ if (process.env.NODE_ENV === "production") {
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
+
 
 app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
