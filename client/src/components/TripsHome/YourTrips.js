@@ -44,7 +44,7 @@ class YourTrips extends React.Component {
             <div className="card-content">
                 <span className="card-title">{this.props.name}</span>
                 <p>{this.props.description}</p>
-                <p>Users: {this.props.userArray}</p>
+                <p>Users: {this.props.userArray + " "}</p> {/*could potentially map this array again*/}
             </div>
             <div className="card-action">
                 <div className="row">
