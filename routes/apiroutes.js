@@ -327,4 +327,8 @@ Router.delete('/tripcomments/delete/:id', function (req, res) {
 //   // req.params.id
 // })
 
+Router.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"))
+})
+
 module.exports = Router
