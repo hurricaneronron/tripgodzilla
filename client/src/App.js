@@ -18,9 +18,30 @@ class App extends Component {
   
   render() {
     const socket = socketIOClient(this.state.endpoint)
-    socket.on('update page', (page) => {
-      // refresh the page to receive new data
-      window.location.reload()
+    socket.on('update message', (page) => {
+      if (page === localStorage.getItem("selectedBoxId")) {
+      //  window.location.reload()
+      }
+    })
+    socket.on('update friendrequest', (page) => {
+      if (page === localStorage.getItem("selectedBoxId")) {
+        window.location.reload()
+      }
+    })
+    socket.on('update friendslist', (page) => {
+      if (page === localStorage.getItem("selectedBoxId")) {
+        window.location.reload()
+      }
+    })
+    socket.on('update tripitem', (page) => {
+      if (page === localStorage.getItem("selectedBoxId")) {
+        window.location.reload()
+      }
+    })
+    socket.on('update tripcomment', (page) => {
+      if (page === localStorage.getItem("selectedBoxId")) {
+        window.location.reload()
+      }
     })
     return (
       <BrowserRouter>

@@ -7,6 +7,7 @@ import axios from 'axios';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import socketIOClient from 'socket.io-client';
 
 class Messages extends React.Component {
     state = {
@@ -15,7 +16,8 @@ class Messages extends React.Component {
         selectedBox: localStorage.getItem("selectedBoxId"),
         userId: localStorage.getItem("userId"),
         name: localStorage.getItem("name"),
-        friends: []
+        friends: [],
+        endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
     }
     
     componentDidMount () {
@@ -93,6 +95,14 @@ class Messages extends React.Component {
     }
 
     render() {
+    const socket = socketIOClient(this.state.endpoint)
+    socket.on('update message', (page) => {
+      if (page === localStorage.getItem("selectedBoxId")) {
+     // window.location.reload()
+      console.log("firing in messages.js")
+      this._MessageBox.loadMessages()
+      }
+    })
         return (
             <div>
                 <Navbar />
@@ -143,7 +153,7 @@ class Messages extends React.Component {
                                 </div>
                                 <div className="col s12 m5 right">
                                 <h5>Current Chat</h5>
-                                <MessageBox />
+                                <MessageBox ref={(MessageBox) => { this._MessageBox = MessageBox; }}/>
                                 </div>
                             </div>
                         </div>
