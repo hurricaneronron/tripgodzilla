@@ -7,13 +7,14 @@ import Select from '@material-ui/core/Select';
 import axios from 'axios'
 import MessageBox from "./Messages/MessageBox";
 import "../styles/RightSidebar.css";
-
+import socketIOClient from 'socket.io-client';
 
 class RightSidebar extends React.Component {
 state = {
     select: "",
     pinboards: [],
-    itemArray: []
+    itemArray: [],
+    endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
 }
 
 componentDidMount () {
@@ -74,7 +75,8 @@ handleAdd = () => {
             this.refs.name.value=""
             this.refs.link.value=""
             this.refs.description.value=""
-            window.location.reload()
+            const socket = socketIOClient(this.state.endpoint)
+            socket.emit('update page', "meaningless content")
         })
     })
     .catch(e => {

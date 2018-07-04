@@ -16,7 +16,7 @@ class Comment extends React.Component {
                 console.log(e)
             })
         } else {
-            console.log("Sorry, you must be either the user who posted this comment or the trip admin to delete.")
+            alert("Sorry, you must be either the user who posted this comment or the trip admin to delete.")
         }
     }
     render () {

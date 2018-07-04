@@ -9,12 +9,14 @@ import axios from 'axios';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import socketIOClient from 'socket.io-client';
 
 class User extends React.Component {
     state = {
         filters: [],
         friends: [],
-        friendrequests: []
+        friendrequests: [],
+        endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
     }
 
     handleInputChange = event => {
@@ -81,7 +83,7 @@ class User extends React.Component {
                     })
                     .then(r => {
                         console.log(r)
-                        window.location.reload()
+                        this.loadElements()
                     })
                     .catch(e => {
                         console.log(e)
@@ -123,7 +125,8 @@ class User extends React.Component {
                                     })
                                     .then(r => {
                                         this.refs.friendinput.value=""
-                                        this.loadElements()
+                                        const socket = socketIOClient(this.state.endpoint)
+                                        socket.emit('update page', "meaningless content")
                                     })
                                     .catch(e => {
                                     console.log(e)

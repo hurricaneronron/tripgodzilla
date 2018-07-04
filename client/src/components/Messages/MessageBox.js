@@ -2,11 +2,13 @@ import React from "react";
 // import "../../styles/MessageBox";
 import UserChatMessage from "./UserChatMessage";
 import axios from 'axios'
+import socketIOClient from 'socket.io-client'
 
 class MessageBox extends React.Component {
     state = {
         selectedBox : localStorage.getItem("selectedBoxId"),
-        messages: []
+        messages: [],
+        endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
     }
 
     loadMessages = () => {
@@ -22,14 +24,14 @@ class MessageBox extends React.Component {
     }
 
     componentDidMount () {
-        console.log(this.state.selectedBox)
-        axios.get('/chatboxes/indivbox/' + this.state.selectedBox)
-        .then(r => {
-            this.loadMessages()
-        })
-        .catch(e => {
-            console.log(e)
-        })
+        //console.log(this.state.selectedBox)
+        //axios.get('/chatboxes/indivbox/' + this.state.selectedBox)
+        //.then(r => {
+        this.loadMessages()
+        //})
+        //.catch(e => {
+        //    console.log(e)
+        //})
     }
 
     handleInputChange = event => {
@@ -58,6 +60,8 @@ class MessageBox extends React.Component {
             .then(r => {
                 console.log(r)
                 this.refs.messageInput.value=""
+                const socket = socketIOClient(this.state.endpoint)
+                socket.emit('update page', "meaningless content")
             })
             .catch(e => {
                 console.log(e)

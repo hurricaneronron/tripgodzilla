@@ -8,9 +8,20 @@ import TripBoard from "./components/TripBoard/TripBoard";
 import User from "./components/User/User";
 import Welcome from "./components/Welcome";
 import { BrowserRouter, Route } from 'react-router-dom'
+import {workingFunction} from './components/Welcome'
+import socketIOClient from 'socket.io-client'
 
 class App extends Component {
+  state = {
+    endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
+  }
+  
   render() {
+    const socket = socketIOClient(this.state.endpoint)
+    socket.on('update page', (page) => {
+      // refresh the page to receive new data
+      window.location.reload()
+    })
     return (
       <BrowserRouter>
         <div>
