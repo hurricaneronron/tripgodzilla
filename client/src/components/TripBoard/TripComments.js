@@ -72,16 +72,6 @@ class TripComments extends React.Component {
         return (
     <div>
         <h5>Comments</h5>
-        {this.state.commentsArray.map(comment => {
-                return (<Comment 
-                    key = {comment._id}
-                    id = {comment._id}
-                    user = {comment.userid}
-                    admin = {comment.admin}
-                    comment = {comment.comment}
-                    timestamp = {comment.timestamp}
-                />)
-            })}
         <form>
             <div className="row">
                 <div className="input-field">
@@ -92,6 +82,16 @@ class TripComments extends React.Component {
                 <a className="waves-effect waves-light btn-small blue darken-4" onClick={this.handleAdd}>ADD</a>
             </div>
         </form>
+        {this.state.commentsArray.map(comment => {
+                return (<Comment 
+                    key = {comment._id}
+                    id = {comment._id}
+                    user = {comment.userid}
+                    admin = {comment.admin}
+                    comment = {comment.comment}
+                    timestamp = {comment.timestamp}
+                />)
+            })}
     </div>
         )
     }
