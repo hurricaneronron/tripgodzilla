@@ -15,9 +15,25 @@ const io = socketIO(server)
 io.on("connection", socket => {
   console.log("Socket is connected...")
 
-  socket.on('update page', (page) => {
+  socket.on('update message', (page) => {
     console.log("the value of 'page' = " + page)
-    io.sockets.emit('update page', page)
+    io.sockets.emit('update message', page)
+  })
+  socket.on('update friendrequest', (page) => {
+    console.log("the value of 'page' = " + page)
+    io.sockets.emit('update friendrequest', page)
+  })
+  socket.on('update friendslist', (page) => {
+    console.log("the value of 'page' = " + page)
+    io.sockets.emit('update friendslist', page)
+  })
+  socket.on('update tripitem', (page) => {
+    console.log("the value of 'page' = " + page)
+    io.sockets.emit('update tripitem', page)
+  })
+  socket.on('update tripcomment', (page) => {
+    console.log("the value of 'page' = " + page)
+    io.sockets.emit('update tripcomment', page)
   })
 
   socket.on('disconnect', () => {

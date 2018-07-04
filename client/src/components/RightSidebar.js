@@ -85,13 +85,20 @@ handleAdd = () => {
 }
 
     render() {
+    const socket = socketIOClient(this.state.endpoint)
+    socket.on('update message', (page) => {
+        if (page === localStorage.getItem("selectedBoxId")) {
+        console.log("firing in messages.js")
+        this._MessageBox.loadMessages()
+        }
+    })
         return (
             <div className="col s12 m3 l3">
                 <div id="container">
                 <div className="row">
                         <h6>Chat</h6>
                     </div>
-                    <MessageBox/>
+                    <MessageBox ref={(MessageBox) => { this._MessageBox = MessageBox; }}/>
                     <div className="divider"></div>
                     <div className="row">
                         <h6>Add to Trip</h6>

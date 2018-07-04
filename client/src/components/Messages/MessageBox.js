@@ -61,7 +61,7 @@ class MessageBox extends React.Component {
                 console.log(r)
                 this.refs.messageInput.value=""
                 const socket = socketIOClient(this.state.endpoint)
-                socket.emit('update page', "meaningless content")
+                socket.emit('update message', this.state.selectedBox)
             })
             .catch(e => {
                 console.log(e)
