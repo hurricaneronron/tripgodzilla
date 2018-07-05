@@ -12,38 +12,38 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server)
 
-// io.on("connection", socket => {
-//   console.log("Socket is connected...")
+io.on("connection", socket => {
+  console.log("Socket is connected...")
 
-//   socket.on('update message', (page) => {
-//     console.log("the value of 'page' = " + page)
-//     io.sockets.emit('update message', page)
-//   })
-//   socket.on('update friendrequest', (page) => {
-//     console.log("the value of 'page' = " + page)
-//     io.sockets.emit('update friendrequest', page)
-//   })
-//   socket.on('update friendslist', (page) => {
-//     console.log("the value of 'page' = " + page)
-//     io.sockets.emit('update friendslist', page)
-//   })
-//   socket.on('update tripitem', (page) => {
-//     console.log("the value of 'page' = " + page)
-//     io.sockets.emit('update tripitem', page)
-//   })
-//   socket.on('update tripcomment', (page) => {
-//     console.log("the value of 'page' = " + page)
-//     io.sockets.emit('update tripcomment', page)
-//   })
+  socket.on('update message', (page) => {
+    console.log("the value of 'page' = " + page)
+    io.sockets.emit('update message', page)
+  })
+  socket.on('update friendrequest', (page) => {
+    console.log("the value of 'page' = " + page)
+    io.sockets.emit('update friendrequest', page)
+  })
+  socket.on('update friendslist', (page) => {
+    console.log("the value of 'page' = " + page)
+    io.sockets.emit('update friendslist', page)
+  })
+  socket.on('update tripitem', (page) => {
+    console.log("the value of 'page' = " + page)
+    io.sockets.emit('update tripitem', page)
+  })
+  socket.on('update tripcomment', (page) => {
+    console.log("the value of 'page' = " + page)
+    io.sockets.emit('update tripcomment', page)
+  })
 
-//   socket.on('disconnect', () => {
-//     console.log('user disconnected');
-//   })
-// })
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  })
+})
 
-// server.listen(ioPORT, function() {
-//   console.log(`🌎 ==> Server now on port ${ioPORT}!`);
-// });
+server.listen(ioPORT, function() {
+  console.log(`🌎 ==> Server now on port ${ioPORT}!`);
+});
 
 //end socket
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/myusersDB')
