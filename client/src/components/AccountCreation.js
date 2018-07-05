@@ -124,8 +124,8 @@ class AccountCreation extends React.Component {
                             </div>
                         </div>
                         <div className="row">
+                            <h6>Choose A Password</h6>
                             <div className="input-field col s6">
-                                <h6>Choose A Password</h6>
                                 <input id="password" type="password" className="validate" ref="passwordInput" onChange={this.handleInputChange} name="password"/>
                                 <label htmlFor="password" className="active">Password</label>
                             </div>
