@@ -1,6 +1,4 @@
 import React from "react";
-import RecentMessages from "./RecentMessages";
-import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -106,17 +104,20 @@ handleAdd = () => {
                     <form>
                         <div className="row">
                             <div className="input-field">
-                                <input placeholder="Item Name" id="item_name" ref="name" name= "name" onChange={this.handleChange} type="text" />
+                                <input id="item_name" ref="name" name= "name" type="text" onChange={this.handleChange} />
+                                <label className="active" htmlFor="item_name">Item Name</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field">
-                                <input placeholder="Link" id="item_link" type="text" ref="link" name="link" onChange={this.handleChange} />
+                                <input id="item_link" type="text" ref="link" name="link" value="https://" onChange={this.handleChange} />
+                                <label className="active" htmlFor="item_link">Link</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field">
-                                <textarea placeholder="Description" id="item_description" ref="description" name="description" onChange={this.handleChange} className="materialize-textarea"></textarea>
+                                <textarea id="item_description" ref="description" name="description" onChange={this.handleChange} className="materialize-textarea"></textarea>
+                                <label className="active" htmlFor="item_description">Description</label>
                             </div>
                         </div>
                         <div className="row">
