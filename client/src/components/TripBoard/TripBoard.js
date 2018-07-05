@@ -162,8 +162,8 @@ class TripBoard extends React.Component {
                                 })}
                             </div>
                         </div>
-                        <TripComments />
                         <div className="divider"></div>
+                        <TripComments />
                     </div>
                 <RightSidebar />
                 </div>

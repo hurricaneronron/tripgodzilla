@@ -47,7 +47,7 @@ server.listen(ioPORT, function() {
 });
 
 //end socket
-mongoose.connect('mongodb://localhost/myusersDB')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/myusersDB')
 
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(bodyparser.json())

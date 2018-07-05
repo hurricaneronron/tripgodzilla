@@ -1,5 +1,6 @@
 var Router = require('express').Router()
 var db = require('../models')
+const path = require("path");
 
 // users gets and posts
 Router.get('/users', function (req, res) {
@@ -326,5 +327,9 @@ Router.delete('/tripcomments/delete/:id', function (req, res) {
 // Router.delete('/users:id', function (req, res) {
 //   // req.params.id
 // })
+
+Router.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"))
+})
 
 module.exports = Router
