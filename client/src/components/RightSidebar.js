@@ -76,7 +76,7 @@ handleAdd = () => {
             this.refs.link.value=""
             this.refs.description.value=""
             const socket = socketIOClient(this.state.endpoint)
-            socket.emit('update page', "meaningless content")
+            socket.emit('update tripitem', localStorage.getItem("tripId"))
         })
     })
     .catch(e => {

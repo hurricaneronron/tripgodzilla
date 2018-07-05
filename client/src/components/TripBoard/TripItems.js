@@ -1,15 +1,28 @@
 import React from "react";
 import axios from 'axios';
+import socketIOClient from 'socket.io-client';
 
 class TripItems extends React.Component {
     state = {
-        itemArray : []
+        itemArray : [],
+        endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
     }
     handleAdminDelete = event => {
         var admin = event.target.name
         var id = event.target.id
-        var _target = event.target
-        var reconstructedItem = {name: _target.attributes.data.value, link: _target.attributes.datalink.value, description: _target.attributes.datadescription.value}
+        var name = ""
+        var link = ""
+        var description = ""
+        if (event.target.attributes.data) {
+            name = event.target.attributes.data.value
+        }
+        if (event.target.attributes.datalink) {
+            link = event.target.attributes.datalink.value
+        }
+        if (event.target.attributes.datadescription) {
+            description = event.target.attributes.datadescription.value
+        }
+        var reconstructedItem = {name: name, link: link, description: description}
         console.log("attempt here", reconstructedItem)
         if (localStorage.getItem("userId") === admin ){
             axios.get('/pinboards/indivboard/' + id)
@@ -35,7 +48,9 @@ class TripItems extends React.Component {
                 })
                 .then(r => {
                     console.log(r)
-                    window.location.reload()
+                    const socket = socketIOClient(this.state.endpoint)
+                    socket.emit('update tripitem', localStorage.getItem("tripId"))
+                    this.props.refresh()
                 })
                 .catch(e => {
                     console.log(e)

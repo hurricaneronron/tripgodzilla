@@ -2,7 +2,8 @@ const express = require("express");
 const mongoose = require('mongoose');
 const path = require("path");
 var bodyparser = require('body-parser');
-
+const request = require("request")
+const cheerio = require("cheerio")
 //socket
 const http = require('http')
 const socketIO = require("socket.io")
@@ -64,4 +65,4 @@ app.get("*", function(req, res) {
 });
 app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
-});
+})

@@ -3,7 +3,9 @@ import "../../styles/TripsHome.css";
 import Navbar from "../Navbar";
 import RightSidebar from "../RightSidebar";
 import YourTrips from "./YourTrips";
-import axios from 'axios'
+import axios from 'axios';
+import request from 'request';
+import cheerio from 'cheerio';
 
 class TripsHome extends React.Component {
     state = {

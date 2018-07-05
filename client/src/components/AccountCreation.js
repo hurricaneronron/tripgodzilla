@@ -107,7 +107,7 @@ class AccountCreation extends React.Component {
                 (this is how other users will search for you) */}
                 <div className="row">
                     <form className="col s6">
-                        <div className="row">
+                        <div className="row"> 
                             <div className="input-field col s6">
                                 <input id="userid" type="text" className="validate" ref="userIdInput" onChange={this.handleInputChange} name="userId"/>
                                 <label htmlFor="userid" className="active">Create Your User Id</label>

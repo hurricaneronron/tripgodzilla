@@ -4,6 +4,7 @@ import axios from 'axios'
 import moment from 'moment'
 import socketIOClient from 'socket.io-client';
 
+
 class TripComments extends React.Component {
     state = {
         commentsArray: [],
@@ -59,7 +60,8 @@ class TripComments extends React.Component {
                 console.log(r)
                 this.refs.comment.value=""
                 const socket = socketIOClient(this.state.endpoint)
-                socket.emit('update page', "meaningless content")
+                socket.emit('update tripcomment', tripid)
+                this.loadElements()
             })
         .catch(e => {
             console.log(e)
@@ -72,6 +74,12 @@ class TripComments extends React.Component {
 
     }
     render() {
+    const socket = socketIOClient(this.state.endpoint)
+    socket.on('update tripcomment', (page) => {
+        if (page === localStorage.getItem("tripId")) {
+        this.loadElements()
+        }
+    })
         return (
     <div>
         <h5>Comments</h5>
@@ -83,6 +91,7 @@ class TripComments extends React.Component {
                     admin = {comment.admin}
                     comment = {comment.comment}
                     timestamp = {comment.timestamp}
+                    refresh = {this.loadElements}
                 />)
             })}
         <form>
