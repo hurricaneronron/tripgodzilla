@@ -43,8 +43,9 @@ class FriendRequests extends React.Component {
                                         .then(r => {
                                             console.log(r)
                                             const socket = socketIOClient(this.state.endpoint)
-                                            socket.emit('update page', "meaningless content")
-                                        })
+                                            socket.emit('update friendslist', "meaningless content")
+                                            this.props.refresh()
+                                        })  
                                         .catch(e => {
                                             console.log(e)
                                         })
@@ -67,7 +68,9 @@ class FriendRequests extends React.Component {
             axios.delete('/friendrequests/delete/' + id, {_id: id})
             .then(r => {
                 console.log(r)
-                window.location.reload()
+                const socket = socketIOClient(this.state.endpoint)
+                socket.emit('update friendrequest', "nothing")
+                this.props.refresh()
             })
             .catch(e => {
                 console.log(e)

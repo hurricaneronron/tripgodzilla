@@ -8,6 +8,7 @@ import axios from 'axios';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import socketIOClient from 'socket.io-client';
 
 class TripBoard extends React.Component {
     state = {
@@ -16,7 +17,8 @@ class TripBoard extends React.Component {
         userArray: [],
         name: "",
         description: "",
-        tripItems: []
+        tripItems: [],
+        endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
     }
     componentDidMount (){
         this.loadContent()
@@ -101,6 +103,12 @@ class TripBoard extends React.Component {
         })
     }
     render() {
+    const socket = socketIOClient(this.state.endpoint)
+    socket.on('update tripitem', (page) => {
+        if (page === localStorage.getItem("tripId")) {
+            this.loadContent()
+        }
+    })
         return (
             <div>
                 <Navbar />
@@ -149,6 +157,7 @@ class TripBoard extends React.Component {
                                         link = {item.item.link}
                                         admin = {item.admin}
                                         description = {item.item.description}
+                                        refresh = {this.loadContent}
                                         />)
                                 })}
                             </div>

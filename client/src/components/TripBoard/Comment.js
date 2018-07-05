@@ -1,16 +1,23 @@
 import React from "react";
 import axios from 'axios';
+import socketIOClient from 'socket.io-client';
+
 class Comment extends React.Component {
+    state = {
+        endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
+    }
+
     handleDelete = event => {
         var id = event.target.name
         var admin = event.target.attributes.admin.value
         var poster = event.target.attributes.poster.value
-        console.log("You're trying to delete me, Dave.")
         if(localStorage.getItem("userId") === admin || localStorage.getItem("userId") === poster) {
             axios.delete('/tripcomments/delete/' + id, {_id: id})
             .then(r => {
                 console.log(r)
-                window.location.reload()
+                const socket = socketIOClient(this.state.endpoint)
+                socket.emit('update tripcomment', localStorage.getItem("tripId"))
+                this.props.refresh()
             })
             .catch(e => {
                 console.log(e)

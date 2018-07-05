@@ -20,7 +20,7 @@ class YourFriends extends React.Component {
                 })
                 .then(r => {
                     console.log(r)
-                    window.location.reload()
+                    this.props.refresh()
                 })
                 .catch(e => {
                     console.log(e)
@@ -42,7 +42,6 @@ class YourFriends extends React.Component {
                 })
                 .then(r => {
                     console.log(r)
-                    window.location.reload()
                 })
                 .catch(e => {
                     console.log(e)

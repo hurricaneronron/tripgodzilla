@@ -16,6 +16,7 @@ class User extends React.Component {
         filters: [],
         friends: [],
         friendrequests: [],
+        alert: "",
         endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
     }
 
@@ -33,6 +34,7 @@ class User extends React.Component {
     }
 
     loadElements = () => {
+        this.setState({alert: ""})
         axios.get('/users/' + localStorage.getItem("userId"))
         .then(r => {
             console.log(r)
@@ -90,7 +92,7 @@ class User extends React.Component {
                     })
                 }
                 else {
-                    alert("You've already added that filter!")
+                    this.setState({alert: "You've already added that filter!"})
                 }
         })
         .catch(e => {
@@ -110,13 +112,15 @@ class User extends React.Component {
                     .then(r => {
                         if (r.data.length > 0){
                         console.log("exists", r.data.length)
-                        alert("You have already sent this person a friend request.")
+                        this.refs.friendinput.value=""
+                        this.setState({alert: "You have already sent this person a friend request."})
                         } else {
                             axios.get(`/friendrequests/pending/${requestee}/${requester}`)
                             .then(r => {
                                 if (r.data.length > 0){
                                     console.log("exists", r.data.length)
-                                    alert("This person has already sent you a friend request. Check your friend requests to accept!")
+                                    this.refs.friendinput.value=""
+                                    this.setState({alert: "This person has already sent you a friend request. Check your friend requests to accept!"})
                                     } else {
                                     axios.post('/friendrequests', {
                                         requester: requester,
@@ -126,7 +130,8 @@ class User extends React.Component {
                                     .then(r => {
                                         this.refs.friendinput.value=""
                                         const socket = socketIOClient(this.state.endpoint)
-                                        socket.emit('update page', "meaningless content")
+                                        socket.emit('update friendrequest', [requester, requestee])
+                                        this.loadElements()
                                     })
                                     .catch(e => {
                                     console.log(e)
@@ -136,7 +141,7 @@ class User extends React.Component {
                         }
                     })
                 } else {
-                    alert("Good news! You're already friends with this user!")
+                    this.setState({alert: "You're already friends with this user!"})
                     this.refs.friendinput.value=""
                 }
             })
@@ -146,6 +151,18 @@ class User extends React.Component {
     }
 
     render() {
+        const socket = socketIOClient(this.state.endpoint)
+        socket.on('update friendslist', (page) => {
+            if (page === page) {
+                this.loadElements()
+                console.log(page)
+            }
+          })
+        socket.on('update friendrequest', (page) => {
+        //    if (page[0] === localStorage.getItem("userId") || page[1] === localStorage.getItem("userId")) {
+              this.loadElements()
+        //    }
+        })
         return (
             <div>
                 <Navbar />
@@ -160,6 +177,7 @@ class User extends React.Component {
                                 return (<YourFilters 
                                     key =  {filter.filter}
                                     name = {filter.filter}
+                                    refresh = {this.loadElements}
                                     />)
                                 })}
                                 <div className="row">
@@ -194,6 +212,9 @@ class User extends React.Component {
                                     <div className="row">
                                         <a className="waves-effect waves-light btn yellow black-text" onClick={this.handleFriendRequest.bind(this)}>add</a>
                                     </div>
+                                    <div className="row">
+                                        {this.state.alert}
+                                    </div>
                                 </div>
                             </div>
                             <div className="row"></div>
@@ -205,6 +226,7 @@ class User extends React.Component {
                                     return (<YourFriends 
                                         key =  {friend.friend}
                                         name = {friend.friend}
+                                        refresh = {this.loadElements}
                                     />)
                                     })}
                                 </div>
@@ -215,6 +237,7 @@ class User extends React.Component {
                                         key =  {request.id}
                                         id = {request.id}
                                         requester = {request.requester}
+                                        refresh = {this.loadElements}
                                         />)
                                     })}
                                 </div>

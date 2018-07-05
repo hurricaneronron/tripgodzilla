@@ -17,7 +17,7 @@ class YourFilters extends React.Component {
                         })
                         .then(r => {
                                 console.log(r)
-                                window.location.reload()
+                                this.props.refresh()
                         })
                         .catch(e => {
                                 console.log(e)

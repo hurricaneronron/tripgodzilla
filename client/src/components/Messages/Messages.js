@@ -94,6 +94,10 @@ class Messages extends React.Component {
         })
     }
 
+    handleLoadMessages = () => {
+        this._MessageBox.loadMessages()
+    }
+
     render() {
     const socket = socketIOClient(this.state.endpoint)
     socket.on('update message', (page) => {
@@ -148,6 +152,7 @@ class Messages extends React.Component {
                                         box = {box.box}
                                         messager = {box.messager}
                                         messagee = {box.messagee}
+                                        refresh = {this.handleLoadMessages}
                                         />)
                                     })}
                                 </div>

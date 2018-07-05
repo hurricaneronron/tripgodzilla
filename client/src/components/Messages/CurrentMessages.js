@@ -9,6 +9,8 @@ class CurrentMessages extends React.Component {
     handleSelect = value => {
         var selected = value.target.name
         localStorage.setItem("selectedBoxId", selected)
+        console.log(this.props.refresh)
+        this.props.refresh() // this is not working for some reason - try to fix so you can get rid of the force reload
         window.location.reload()
     }
 
@@ -28,6 +30,7 @@ class CurrentMessages extends React.Component {
                 })
                 .then(r => {
                     console.log(r)
+                    this.props.refresh()
                 })
                 .catch(e => {
                     console.log(e)
