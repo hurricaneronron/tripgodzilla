@@ -1,5 +1,6 @@
 var Router = require('express').Router()
 var db = require('../models')
+const path = require("path");
 
 // users gets and posts
 Router.get('/users', function (req, res) {
