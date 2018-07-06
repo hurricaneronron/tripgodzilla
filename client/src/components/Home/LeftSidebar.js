@@ -5,7 +5,7 @@ const LeftSidebar = props =>
         <form action="#">
             <p>
                 <label>
-                    <input type="checkbox" className="filled-in" />
+                    <input type="checkbox" value = {props.name} className="filled-in" onClick={props.filterUpdate} />
                     <span>{props.name}</span>
                 </label>
             </p>

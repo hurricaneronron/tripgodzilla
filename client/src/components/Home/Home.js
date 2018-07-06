@@ -5,13 +5,39 @@ import LeftSidebar from "./LeftSidebar";
 import RightSidebar from "../RightSidebar";
 import Results from "../Home/Results";
 import Footer from "../Footer";
-import axios from 'axios'
+import MapWithASearchBox from "./Map"
+import axios from "axios"
+import LocationSearchInput from "../Search/Search"
+let newBounds
+let filterObj
 
 class Home extends React.Component {
-    state = {
-        filters: [],
-        friends: []
+    constructor() {
+        super()
+        this.state = {
+            filters: [],
+            friends: [],
+            center : { lat: 33.640, lng: -117.846 },
+            searchInput: { lat: 33.640, lng: -117.846 },
+            venues: [],
+            newBounds,
+            passMarkers: [],
+            historical: false,
+            haunted: true, 
+            roadside: false,
+            toggleArray: []
+        }
+
+    this.filterUpdate = this.filterUpdate.bind(this);
     }
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    };
+
     componentDidMount () {
         this.loadElements()
         console.log("working")
@@ -28,11 +54,88 @@ class Home extends React.Component {
             }
             console.log(filtersArray)
             this.setState({filters: filtersArray})
+            console.log(this.state.filters)
         })
         .catch(e => {
             console.log(e)
         })
     }
+
+    getInput = (input) => {
+        this.setState({searchInput: input})
+    }
+
+    getBounds = (bounds) => {
+        this.setState({newBounds: bounds})
+    }
+
+    getVenues = (newVenue) => {
+        if (newVenue !== this.state.venues) {
+            this.setVenues(newVenue)
+            this.setState({passMarkers: newVenue})
+        } else {
+            //console.log("equal arg")
+        }
+    }
+
+    setVenues = (updated) => {
+        this.setState({venues: updated})
+    }
+
+    postHaunted = () => {
+        let tempobj = {
+          "id": 1,
+          "title": "test",
+          "location": "spot"
+        }
+        axios.post('/haunted', tempobj)
+            .then(r => {
+                console.log(r)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    }
+
+    postHistorical = () => {
+        let tempobj = {
+            'id': 1,
+            'city': 'test',
+            'description': 'test',
+            'location': 'test',
+            'state': 'test',
+            'state_abbrev': 'test',
+            'longitude': -111.2222222,
+            'latitude': 35.111111111,
+            'link': 'www.google.com',
+            'src': 'www.google.com'
+        }
+        axios.post('/historical', tempobj)
+        .then(res => {console.log(res)})
+        .catch(err => console.log(err))
+    }
+
+    filterUpdate = (value) => {
+        console.log(value)
+        console.log(this)
+        // this.setState(prevState => ({
+        //     haunted: !prevState.haunted
+        // }));
+        console.log(this.state.haunted)
+    }
+
+    // postRoadside = () => {
+    //     let tempobj = {
+    //         "id": 1,
+    //         "title": "test",
+    //         "location": "spot"
+    //     }
+    //     axios.post('/roadside', tempobj)
+    //     .then(res => {console.log(res)})
+    //     .catch(err => console.log(err))
+    // }
+
+
     render() {
         return (
             <div id="background" className="deep purple darken-1">
@@ -49,32 +152,57 @@ class Home extends React.Component {
                     return (<LeftSidebar 
                         key =  {filter.filter}
                         name = {filter.filter}
+                        filterUpdate = {this.filterUpdate.bind(this)}
                     />)
                 })}
                 </div>
                 </div>
-                    <div className="col s12 m7">
+                <div className="col s12 m7">
                         <div id="container">
                             <div className="row">
-                                <h4>Search A Location</h4>
-                            </div>
-                            <div className="row">
                                 <div className="input-field col s12 m7">
-                                    <input placeholder="Enter Location" id="location" type="text" />
+                                    <LocationSearchInput 
+                                        getUserInput = {this.getInput}
+                                        onPlacesChanged = {this.onPlacesChanged}
+                                        
+                                    >
+                                    </LocationSearchInput>
                                 </div>
-                                <a className="waves-effect waves-light btn yellow black-text col s3 m2 offset-s1 offset-m1">search</a>
+                                <a className="waves-effect waves-light btn yellow black-text col s3 m2 offset-s1 offset-m1" onClick={this.postHaunted}>search</a>
                             </div>
                             <div className="row">
-                                <div className="col s12 m7">
-                                Map goes here.
+                                <div className="col s12 m12">
+                                <MapWithASearchBox
+                                    searchLocation = {this.state.searchInput}
+                                    getNewBounds = {this.getBounds}
+                                    passBounds = {this.state.newBounds}
+                                    onDragEnd = {this.onDragEnd}
+                                    getVenues = {this.getVenues}
+                                >
+                                </MapWithASearchBox>
                                 </div>
                             </div>
                             <div className="row">
                                 <h5>Search Results</h5>
-                                <Results />
-                                <Results />
-                                <Results />
-                                <Results />
+                                {this.state.venues.map(venue => {
+                                    return (
+                                    <Results
+                                        key={venue.id}
+                                        id={venue.id}
+                                        title={venue.address}
+                                        description={venue.description}
+                                        city={venue.city}
+                                        state={venue.state}
+                                        architect = {venue.architect}
+                                        person = {venue.person}
+                                        park = {venue.park}
+                                        address = {venue.address}
+                                        roadside = {this.state.roadside}
+                                        haunted = {this.state.haunted}
+                                        historical = {this.state.historical}
+                                    />
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
