@@ -34,7 +34,7 @@ class Home extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div id="background" className="deep purple darken-1">
                 <Navbar />
                 <div className="row">
                 <div className="col s12 m2">
@@ -68,6 +68,8 @@ class Home extends React.Component {
                             </div>
                             <div className="row">
                                 <h5>Search Results</h5>
+                                <Results />
+                                <Results />
                                 <Results />
                                 <Results />
                             </div>

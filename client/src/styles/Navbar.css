@@ -1,15 +1,18 @@
 #WelcomeMessage {
-    /* position: relative;
-    float: left; */
-    /* color: cornflowerblue; */
+    font-family: 'Bangers', cursive;
     font-size: 24px;
-    /* left: 150px;
-    bottom: 18px;
-    top: 5px;
-    margin:0; */
 }
 
-#logo-img {
-    height: 30px;
-    width: auto
+#nav-img {
+    height: 50px;
+    width: auto;
+}
+
+.brand-logo {
+    font-family: 'Bangers', cursive;
+    font-size: 36px;
+}
+
+.nav-list {
+    font-family: 'Oswald', sans-serif;
 }

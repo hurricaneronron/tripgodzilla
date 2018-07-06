@@ -20,16 +20,16 @@ class Navbar extends React.Component {
       <nav>
         <div className="nav-wrapper blue darken-4">
           <span>
-            <img src={logo} id="logo-img" />
-            <a href="/" className="brand-logo left">TripGodzilla</a>
+            
+            <a href="/" className="brand-logo left"><img src={logo} id="nav-img" /> TripGodzilla</a>
           </span>
           <ul id="nav-mobile" className="right">
             <li><a id="WelcomeMessage">Welcome, {localStorage.getItem("name")}!</a></li>
-            <li><a href="/Home">Home</a></li>
-            <li><a href="/User">User</a></li>
-            <li><a href="/TripsHome">Trips</a></li>
-            <li><a href="/Messages">Messages</a></li>
-            <li><a href="/Welcome" onClick={this.handleLogout}>Logout</a></li>
+            <li className="nav-list"><a href="/Home">Home</a></li>
+            <li className="nav-list"><a href="/User">User</a></li>
+            <li className="nav-list"><a href="/TripsHome">Trips</a></li>
+            <li className="nav-list"><a href="/Messages">Messages</a></li>
+            <li className="nav-list"><a href="/Welcome" onClick={this.handleLogout}>Logout</a></li>
           </ul>
         </div>
       </nav>

@@ -1,5 +1,5 @@
 import React from "react";
-// import "../../styles/MessageBox";
+import "../../styles/MessageBox.css";
 import UserChatMessage from "./UserChatMessage";
 import axios from 'axios'
 import socketIOClient from 'socket.io-client'
@@ -77,7 +77,7 @@ class MessageBox extends React.Component {
 
     render() {
         return(
-        <div className="card">
+        <div id="msg-box" className="card purple darken-1">
             <div className="card-content" id="chatbox" style={{overflowY: 'scroll', height: 300}}>
             {this.state.messages.map(box => {
                 return (<UserChatMessage 
