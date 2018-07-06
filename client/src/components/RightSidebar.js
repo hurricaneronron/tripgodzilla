@@ -83,9 +83,10 @@ handleAdd = () => {
 }
 
     render() {
+    const notMessagesRoute = (!window.location.pathname.includes('Messages'))
     const socket = socketIOClient(this.state.endpoint)
     socket.on('update message', (page) => {
-        if (page === localStorage.getItem("selectedBoxId")) {
+        if (page === localStorage.getItem("selectedBoxId") && notMessagesRoute) {
         console.log("firing in messages.js")
         this._MessageBox.loadMessages()
         }
@@ -93,10 +94,12 @@ handleAdd = () => {
         return (
             <div className="col s12 m3 l3">
                 <div id="container">
-                <div className="row">
-                        <h6>Chat</h6>
-                    </div>
+                    {notMessagesRoute && (
+                    <div className="row">
+                    <h6>Chat</h6>
                     <MessageBox ref={(MessageBox) => { this._MessageBox = MessageBox; }}/>
+                    </div>
+                    )}
                     <div className="divider"></div>
                     <div className="row">
                         <h6>Add to Trip</h6>
