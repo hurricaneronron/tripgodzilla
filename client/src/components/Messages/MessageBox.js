@@ -17,6 +17,9 @@ class MessageBox extends React.Component {
             var newMessageArray = []
             newMessageArray= r.data[0].messages
             this.setState({messages: newMessageArray})
+            var x = document.getElementById("chatbox")
+            x.scrollTop = x.scrollHeight
+            console.log("x", x.scrollTop)
         })
         .catch(e => {
             console.log(e)
@@ -75,7 +78,7 @@ class MessageBox extends React.Component {
     render() {
         return(
         <div className="card">
-            <div className="card-content" style={{overflowY: 'scroll', height: 300}}>
+            <div className="card-content" id="chatbox" style={{overflowY: 'scroll', height: 300}}>
             {this.state.messages.map(box => {
                 return (<UserChatMessage 
                     user = {box.user}
