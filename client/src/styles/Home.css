@@ -1,7 +1,19 @@
 #container {
-    width: 90%;
+    width: 85%;
 }
 
-/* #background {
-    background-color: purple
-} */
+#filterBox {
+    border-color: white;
+    border-style: solid;
+    border-width: 5px
+}
+
+#footer-logo {
+    height: 35px;
+    width: auto;
+}
+
+#footer-contact, #footer-copy {
+    font-family: 'Bangers', cursive;
+    font-size: 18px;
+}
