@@ -13,7 +13,7 @@ io.on("connection", (socket) => {
 })
 server.listen(3020);
 //end socket
-mongoose.connect('mongodb://localhost/myusersDB')
+mongoose.connect('mongodb://localhost/travel')
 
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(bodyparser.json())

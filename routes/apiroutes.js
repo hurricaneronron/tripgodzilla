@@ -1,5 +1,6 @@
 var Router = require('express').Router()
 var db = require('../models')
+dbHaunted = require('../models/haunted')
 
 // users gets and posts
 Router.get('/users', function (req, res) {
@@ -326,5 +327,118 @@ Router.delete('/tripcomments/delete/:id', function (req, res) {
 // Router.delete('/users:id', function (req, res) {
 //   // req.params.id
 // })
+
+
+Router.get('/haunted', function (req, res) {
+  const bounds = JSON.parse(req.query.bounds)
+  const south = bounds.south
+  const west = bounds.west
+  const north = bounds.north
+  const east = bounds.east
+  db.Haunted.find({})
+    .where('longitude').gte(west).lte(east)
+    .where('latitude').gte(south).lte(north)
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+
+Router.post('/haunted', function (req, res) {
+  db.Haunted.create({
+    id: req.body.id,
+    title: req.body.title,
+    location: req.body.location
+  })
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+
+Router.get('/national', function (req, res) {
+  const bounds = JSON.parse(req.query.bounds)
+  const south = bounds.south
+  const west = bounds.west
+  const north = bounds.north
+  const east = bounds.east
+  db.National.find({})
+    .where('Lng').gte(west).lte(east)
+    .where('Lat').gte(south).lte(north)
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+
+Router.post('/national', function (req, res) {
+  db.National.create({
+    id: req.body.id,
+    title: req.body.title,
+    location: req.body.location
+  })
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+
+Router.get('/roadside', function (req, res) {
+  const bounds = JSON.parse(req.query.bounds)
+  const south = parseFloat(bounds.south)
+  const west = parseFloat(bounds.west)
+  const north = parseFloat(bounds.north)
+  const east = parseFloat(bounds.east)
+  db.Roadside.find({
+  })
+    .where('latitude').gte(south).lte(north)
+    .where('longitude').gte(west).lte(east)
+    .exec()
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+
+Router.post('/roadside', function (req, res) {
+  db.Roadside.create({
+    id: req.body.id,
+    title: req.body.title,
+    location: req.body.location
+  })
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+
+Router.put('/roadside/:id', function (req, res) {
+  console.log(req.params.id)
+  console.log(req.body)
+  const newLocation = {
+    lat: req.body.lat,
+    lng: req.body.lng
+  }
+  // req.params.id
+  db.Roadside.update( {_id: req.params.id}, {$set:{latitude: req.body.lat} })
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
 
 module.exports = Router
