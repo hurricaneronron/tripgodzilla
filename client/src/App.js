@@ -9,6 +9,7 @@ import User from "./components/User/User";
 import Welcome from "./components/Welcome";
 import { BrowserRouter, Route } from 'react-router-dom'
 //import {workingFunction} from './components/Welcome'
+import "./App.css"
 
 class App extends Component {
   //state = {
@@ -24,7 +25,7 @@ class App extends Component {
     //})
     return (
       <BrowserRouter>
-        <div>
+        <div id="bgColor" className="indigo lighten-1">
         <Route exact path="/" component= {Welcome} />
         <Route exact path="/Welcome" component= {Welcome} />
         <Route path="/AccountCreation" component= {AccountCreation} />

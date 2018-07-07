@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/Navbar.css";
 import logo from "../styles/images/logo.svg";
 import {Redirect} from "react-router-dom";
 

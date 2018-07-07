@@ -1,24 +1,191 @@
-.App {
-  text-align: center;
+/* Main App Styling */
+* {
+  font-family: 'Oswald', sans-serif;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.btn-large, .btn-small, .btn {
+  font-family: 'Oswald', sans-serif;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+#bgColor {
+  background-color: rgba(121, 134, 203, 1);
 }
 
-.App-intro {
-  font-size: large;
+.content-container {
+  width: 90%;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* Forms */
+input[type=checkbox] {
+  border-top: black;
+}
+.checkbox-content {
+  color: black;
+}
+.materialize-textarea:focus {
+  border-bottom: 1px solid black !important;
+  box-shadow: 0 1px 0 0 black !important;
+}
+.materialize-textarea {
+  border-bottom: 1px solid black !important;
+  box-shadow: 0 1px 0 0 black !important;
+}
+.materialize-textarea::placeholder {
+  color: black;
+  font-family: 'Oswald', sans-serif;
+}
+.input-field input[type=text] {
+  border-bottom: 1px solid black !important;
+  box-shadow: 0 1px 0 0 black !important;
+}
+.input-field input::placeholder {
+  color: black;
+  font-family: 'Oswald', sans-serif;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+color: black !important;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+border-bottom: 1px solid black !important;
+box-shadow: 0 1px 0 0 black !important;
+}
+/* valid color */
+.input-field input[type=text].valid {
+border-bottom: 1px solid black !important;
+box-shadow: 0 1px 0 0 black !important;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+border-bottom: 1px solid black !important;
+box-shadow: 0 1px 0 0 black !important;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+color: black !important;
+}
+
+
+/* Welcome Page */
+#logo-img {
+  height: 400px;
+  width: auto;
+  position: absolute;
+  bottom: 10px;
+  left: 10px
+}
+
+.bg {
+  background: url(./styles/images/skyline.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+  width: auto;
+}
+
+#welcome {
+  /* font-family: 'Pacifico', cursive;  */
+  /* font-family: 'Knewave', cursive;  */
+  font-family: 'Bangers', cursive;
+  /* font-family: 'Fredericka the Great', cursive; */
+  /* font-family: 'Love Ya Like A Sister', cursive;  */
+  /* font-family: 'Skranji', cursive;  */
+  /* font-family: 'Ceviche One', cursive; */
+  /* font-family: 'Megrim', cursive;  */
+  /* font-size: 72px; */
+  color: whitesmoke;
+  padding: 0;
+  margin: 0
+}
+
+
+/* Sign In */
+.logCont {
+  background-color: rgba(245, 245, 245, 0.8);
+  height: 100vh;
+  padding: 10px
+}
+
+
+/* Sign Up */
+
+
+/* Navbar */
+#WelcomeMessage {
+  font-family: 'Bangers', cursive;
+  font-size: 24px;
+}
+
+#nav-img {
+  height: 50px;
+  width: auto;
+}
+
+.brand-logo {
+  font-family: 'Bangers', cursive;
+  font-size: 36px;
+}
+
+
+/* Home Page */
+#resultsCard {
+  border: solid 5px white;
+}
+
+#filterBox {
+  border-color: white;
+  border-style: solid;
+  border-width: 5px
+}
+
+
+/* Right Sidebar */
+#addToTrip {
+  border-color: white;
+  border-style: solid;
+  border-width: 5px
+}
+
+
+/* User Page */
+
+
+/* Trips Home */
+
+
+/* Trip Board */
+
+
+/* Messages Page */
+#msg-box {
+  border-color: white;
+  border-style: solid;
+  border-width: 5px
+}
+
+#message {
+  font-weight: 300;
+  letter-spacing: 1;
+  font-size: 17px
+}
+
+#id {
+  font-weight: 300;
+  letter-spacing: 1;
+  font-size: 17px
+}
+
+
+/* Footer */
+#footer-logo {
+  height: 35px;
+  width: auto;
+}
+
+.footer-text {
+  font-family: 'Bangers', cursive;
+  font-size: 18px;
 }

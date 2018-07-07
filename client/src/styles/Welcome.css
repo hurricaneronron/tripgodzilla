@@ -16,14 +16,9 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 2000px;
+    height: 100vh;
     width: auto;
 }
-
-/* #content {
-    background-color: whitesmoke;
-    opacity: 0.7
-} */
 
 #welcome {
     /* font-family: 'Pacifico', cursive;  */
@@ -42,9 +37,4 @@
 
 .btn-large, .btn-small, .btn {
     font-family: 'Oswald', sans-serif;
-}
-
-.material-icons {
-    padding: 0;
-    margin: 0
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import "../../styles/MessageBox.css";
 import UserChatMessage from "./UserChatMessage";
 import axios from 'axios'
 import socketIOClient from 'socket.io-client'
@@ -91,7 +90,7 @@ class MessageBox extends React.Component {
                     <i className="material-icons prefix">mode_edit</i>
                     <textarea id="icon_prefix2" className="materialize-textarea" name="message" ref="messageInput" onChange={this.handleInputChange}></textarea>
                 </div>
-                <a className="waves-effect waves-light btn-small blue darken-4" onClick={this.handleSend}><i className="material-icons right">send</i>SEND</a>
+                <a className="waves-effect waves-light btn-small yellow black-text" onClick={this.handleSend}><i className="material-icons right">send</i>SEND</a>
             </div>
         </div>
         )

@@ -1,7 +1,7 @@
 import React from "react";
-import "../../styles/TripBoard.css";
 import Navbar from "../Navbar";
 import RightSidebar from "../RightSidebar";
+import Footer from "../Footer"
 import TripItems from "./TripItems";
 import TripComments from "./TripComments";
 import axios from 'axios';
@@ -113,8 +113,8 @@ class TripBoard extends React.Component {
             <div>
                 <Navbar />
                 <div className="row">
-                    <div className="col s0 m1"></div>
-                    <div className="col s12 m8">
+                    <div className="col s12 m8 offset-m1">
+                    <div className="content-container">
                         <div className="row">
                             <div className="col s12 m4">
                             <h5>{this.state.name}</h5>
@@ -122,7 +122,7 @@ class TripBoard extends React.Component {
                             </div>
                             <div className="col s12 m4 right">
                             <div className="row">
-                            <InputLabel htmlFor="age-simple">Add a Friend to this Trip: </InputLabel>
+                            <InputLabel style={{color : "black"}} htmlFor="age-simple">Add a Friend to this Trip: </InputLabel>
                                 <Select
                                     value={this.state.select}
                                     onChange={this.handleInputChange}
@@ -162,11 +162,12 @@ class TripBoard extends React.Component {
                                 })}
                             </div>
                         </div>
-                        <div className="divider"></div>
                         <TripComments />
+                    </div>
                     </div>
                 <RightSidebar />
                 </div>
+                <Footer />
             </div>
         )
     }

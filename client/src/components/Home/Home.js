@@ -1,11 +1,10 @@
 import React from "react";
-import "../../styles/Home.css";
 import Navbar from "../Navbar";
 import LeftSidebar from "./LeftSidebar";
 import RightSidebar from "../RightSidebar";
 import Results from "../Home/Results";
 import Footer from "../Footer";
-import axios from 'axios'
+import axios from 'axios';
 
 class Home extends React.Component {
     state = {
@@ -35,7 +34,7 @@ class Home extends React.Component {
     }
     render() {
         return (
-            <div id="background" className="deep purple darken-1">
+            <div>
                 <Navbar />
                 <div className="row">
                 <div className="col s12 m2">
@@ -44,17 +43,19 @@ class Home extends React.Component {
                         <h5>Filters</h5>
                     </div>
                 </div>
-                <div id="filterBox">
-                {this.state.filters.map(filter => {
-                    return (<LeftSidebar 
-                        key =  {filter.filter}
-                        name = {filter.filter}
-                    />)
-                })}
-                </div>
+                    <div id="filterBox" className="card deep-purple darken-1">
+                        <div className="card-content">
+                            {this.state.filters.map(filter => {
+                                return (<LeftSidebar 
+                                    key =  {filter.filter}
+                                    name = {filter.filter}
+                                />)
+                            })}
+                        </div>
+                    </div>
                 </div>
                     <div className="col s12 m7">
-                        <div id="container">
+                        <div className="content-container">
                             <div className="row">
                                 <h4>Search A Location</h4>
                             </div>
@@ -69,9 +70,9 @@ class Home extends React.Component {
                                 Map goes here.
                                 </div>
                             </div>
+                            <div className="row"></div>
                             <div className="row">
                                 <h5>Search Results</h5>
-                                <Results />
                                 <Results />
                                 <Results />
                                 <Results />

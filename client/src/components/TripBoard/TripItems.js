@@ -70,8 +70,8 @@ class TripItems extends React.Component {
     <div className="card yellow lighten-3">
         <div className="card-content">
             <a className="waves-effect waves-light red darken-4 btn-small right" id={this.props.id} data={this.props.item} datalink={this.props.link} datadescription={this.props.description} name={this.props.admin} onClick={this.handleAdminDelete.bind(this)}>X</a>
-            <span className="card-title">{this.props.item}</span>
-            <a href={this.props.link} target="_blank">{this.props.link}</a>
+            <span className="card-title truncate">{this.props.item}</span>
+            <a className="truncate" href={this.props.link} target="_blank">{this.props.link}</a>
             <p>{this.props.description}</p>
         </div>
     </div>
