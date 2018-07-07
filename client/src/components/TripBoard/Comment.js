@@ -36,17 +36,17 @@ class Comment extends React.Component {
     }
     render () {
         return (
-    <div className="card">
-        <div className="card-content">
-        <span className="red-text" id="alert">
-        {this.state.alert}
-        </span>
-            <a className="waves-effect waves-light red darken-4 btn-small right" poster={this.props.user} admin={this.props.admin} name={this.props.id} onClick={this.handleDelete.bind(this)}>X</a>
-            <span className="card-title">{this.props.user}</span>
-            <p>{this.props.comment}</p>
-            <p>{this.props.timestamp}</p>
-        </div>
-    </div>
+            <div className="card">
+                <div className="card-content">
+                <span className="red-text" id="alert">
+                {this.state.alert}
+                </span>
+                    <a className="waves-effect waves-light red darken-4 btn-small right" poster={this.props.user} admin={this.props.admin} name={this.props.id} onClick={this.handleDelete.bind(this)}>X</a>
+                    <span className="card-title">{this.props.user}</span>
+                    <p>{this.props.comment}</p>
+                    <p>{this.props.timestamp}</p>
+                </div>
+            </div>
         )
     }
 }
