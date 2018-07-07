@@ -175,7 +175,7 @@ class Home extends React.Component {
                                     >
                                     </LocationSearchInput>
                                 </div>
-                                <a className="waves-effect waves-light btn yellow black-text col s3 m2 offset-s1 offset-m1" onClick={this.postHaunted}>search</a>
+                                {/* <a className="waves-effect waves-light btn yellow black-text col s3 m2 offset-s1 offset-m1" onClick={this.postHaunted}>search</a> */}
                             </div>
                             <div className="row">
                                 <div className="col s12 m12">
@@ -207,6 +207,8 @@ class Home extends React.Component {
                                         person = {venue.person}
                                         park = {venue.park}
                                         address = {venue.address}
+                                        link = {venue.link}
+                                        src = {venue.src}
                                         roadside = {this.state.roadside}
                                         haunted = {this.state.haunted}
                                         historical = {this.state.historical}

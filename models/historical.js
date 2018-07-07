@@ -12,8 +12,9 @@ const historicalSchema = new Schema({
   National_Park: {type: String},
   Significant_Person: {type: String},
   latitude: {type: Number},
-  longitude: {type: Number}
-  
+  longitude: {type: Number},
+  link: {type: String},
+  src: {type: String}
 
 });
 

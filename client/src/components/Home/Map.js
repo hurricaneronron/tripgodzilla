@@ -65,10 +65,6 @@ const MapWithASearchBox = compose(
             haunted: nextProps.haunted, 
             roadside: nextProps.roadside
         })
-        console.log(bounds)
-        console.log(nextProps.haunted)
-        console.log(this.state.roadside)
-        console.log(this.state.historical)
         const resultsArray = []
         const markerArray = []
         
@@ -130,7 +126,7 @@ const MapWithASearchBox = compose(
                     if (!r.data) {
                         console.log("Sorry no results, try another area")
                     } else {
-                        console.log(r.data)
+                        // console.log(r.data)
                         for (let i = 0; i < r.data.length; i++) {
                             let newObj = {
                                 id: i + 1,
@@ -143,6 +139,8 @@ const MapWithASearchBox = compose(
                                 address: r.data[i].location,
                                 city: r.data[i].city,
                                 state: r.data[i].state_abbrev,
+                                link: r.data[i].link,
+                                src: r.data[i].src
                             }
                             resultsArray.push(newObj)
                             markerArray.push(newObj.location)
@@ -153,7 +151,7 @@ const MapWithASearchBox = compose(
                         })
                     }
                     const places = this.state.venues
-                    console.log(places)
+                    // console.log(places)
                     nextProps.getVenues(places)
                     
                     const nextMarkers = places.map(place => ({
@@ -195,7 +193,9 @@ const MapWithASearchBox = compose(
                                     location: {
                                         lat: parseFloat(r.data[i].latitude),
                                         lng: parseFloat(r.data[i].longitude)
-                                    }
+                                    },
+                                    link: r.data[i].link,
+                                    src: r.data[i].src
                                 }
                                 // Geocode.fromAddress(newObj.address).then(
                                     //     response => {
