@@ -1,11 +1,8 @@
 import React from "react";
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import axios from 'axios'
 import MessageBox from "./Messages/MessageBox";
-import "../styles/RightSidebar.css";
 import socketIOClient from 'socket.io-client';
+import AddToTrip from "./Home/AddToTrip"
 
 class RightSidebar extends React.Component {
 state = {
@@ -93,65 +90,14 @@ handleAdd = () => {
     })
         return (
             <div className="col s12 m3 l3">
-                <div id="container">
+                <div className="content-container">
                     {notMessagesRoute && (
                     <div className="row">
-                    <h5>Chat</h5>
-                    <MessageBox ref={(MessageBox) => { this._MessageBox = MessageBox; }}/>
+                        <h5>Chat</h5>
+                        <MessageBox ref={(MessageBox) => { this._MessageBox = MessageBox; }}/>
                     </div>
                     )}
-                <div className="row">
-                    <h5>Add to Trip</h5>
-                </div>
-                <div id="addToTrip">
-                <div className="container">
-                <form>
-                    <div className="row">
-                        <div className="input-field">
-                            <input id="item_name" ref="name" name= "name" type="text" onChange={this.handleChange} />
-                            <label className="active" htmlFor="item_name">Item Name</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field">
-                            <input id="item_link" type="text" ref="link" name="link" value="https://" onChange={this.handleChange} />
-                            <label className="active" htmlFor="item_link">Link</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field">
-                            <textarea id="item_description" ref="description" name="description" onChange={this.handleChange} className="materialize-textarea"></textarea>
-                            <label className="active" htmlFor="item_description">Description</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                    <InputLabel htmlFor="age-simple">Select Trip: </InputLabel>
-                        <Select
-                            value={this.state.select}
-                            onChange={this.handleChange}
-                            inputProps={{
-                            name: 'select',
-                            }}
-                        >
-                            <MenuItem value="">
-                            <em>None</em>
-                            </MenuItem>
-                            {this.state.pinboards.map(board => {
-                            return (<MenuItem 
-                                key = {board.board}
-                                value =  {board.board}
-                                name = {board.name}
-                                description = {board.description}
-                                >{board.name}</MenuItem>)
-                            })}
-                        </Select>
-                    </div>
-                    <div className="row">
-                        <a className="waves-effect waves-light btn-small blue darken-4" onClick={this.handleAdd}>ADD</a>
-                    </div>
-                </form>
-                </div>
-                </div>
+                    <AddToTrip />
                 </div>
             </div>
         )

@@ -1,24 +1,23 @@
 import React from "react";
 import AddToTrip from "./AddToTrip";
 
-
 const Results = props => {
 
   if (props.roadside) {
     return (
       <div className="row">
         <div className="col s12">
-          <div className="card">
+          <div id="resultsCard" className="card indigo lighten-4">
             <div className="card-content">
-              <span className="card-title">
+              <span className="card-title truncate">
                 {props.id}. {props.title} ({props.city}, {props.state})
               </span>
-              <a href="PROPS.URL">Link</a>
+              <a className="truncate" href="PROPS.URL">Link</a>
               <h6>{props.description}</h6>
               <p />
             </div>
             <div className="card-action">
-              <a href="PROPS.handleAddToTrip">Add to Trip</a>
+              <a className="waves-effect waves-light btn-small yellow black-text" href="PROPS.handleAddToTrip">Add to Trip</a>
             </div>
           </div>
         </div>

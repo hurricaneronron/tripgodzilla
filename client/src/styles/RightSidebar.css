@@ -10,7 +10,7 @@
 
 /* label color */
 .input-field label {
-color: #000;
+color: red;
 }
 /* label focus color */
 .input-field input[type=text]:focus + label {

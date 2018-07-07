@@ -1,11 +1,10 @@
 import React from "react";
-import "../styles/Welcome.css";
 import logo from "../styles/images/logo.svg"
 
 class Welcome extends React.Component {
     render() {
         return (
-            <div id="bg">
+            <div className="bg">
                 <div id="content" className="container">
                     <div className="row"></div>
                     <div className="row"></div>
