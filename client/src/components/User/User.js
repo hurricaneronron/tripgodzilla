@@ -1,7 +1,7 @@
 import React from "react";
+import "../../styles/User.css";
 import Navbar from "../Navbar";
 import RightSidebar from "../RightSidebar";
-import Footer from "../Footer"
 import YourFilters from "./YourFilters";
 import YourFriends from "./YourFriends";
 import FriendRequests from "./FriendRequests";
@@ -221,9 +221,9 @@ class User extends React.Component {
             <div>
                 <Navbar />
                 <div className="row">
-                    <div className="col s12 m8 offset-m1">
-                        <div className="content-container">
-                            <div className="col s12 m5 left">
+                    <div className="col s12 m9">
+                        <div className="container">
+                            <div className="col s12 m4 left">
                                 <div className="row">
                                     <h5>Your Filters</h5>
                                 </div> 
@@ -235,7 +235,7 @@ class User extends React.Component {
                                     />)
                                 })}
                                 <div className="row">
-                                    <InputLabel htmlFor="age-simple" style={{color : "black"}}>Add a Filter: </InputLabel>
+                                    <InputLabel htmlFor="age-simple">Add a Filter: </InputLabel>
                                     <Select
                                         value={this.state.select}
                                         onChange={this.handleInputChange}
@@ -336,7 +336,6 @@ class User extends React.Component {
                     </div>
                 <RightSidebar />
                 </div>
-                <Footer />
 
             </div>
         )

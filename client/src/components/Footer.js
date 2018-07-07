@@ -8,8 +8,8 @@ class Footer extends React.Component {
                  <div className="footer-copyright">
                     <div className="container">
                         <div className="row">
-                            <p className="footer-text grey-text text-lighten-4 left">© 2018 Triple Godzillas</p>
-                            <span><a className="footer-text grey-text text-lighten-4 right" href="https://github.com/hurricaneronron/finalgroupproject" target="_blank"><img id="footer-logo" src={footerLogo} /> Contact Us</a></span>
+                            <p id="footer-copy" className="grey-text text-lighten-4 left">© 2014 Copyright Triple Godzillas</p>
+                            <span><a id="footer-contact" className="grey-text text-lighten-4 right" href="https://github.com/hurricaneronron/finalgroupproject" target="_blank"><img id="footer-logo" src={footerLogo} /> Contact Us</a></span>
                         </div>
                     </div>
                 </div>
