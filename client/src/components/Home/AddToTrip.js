@@ -86,7 +86,7 @@ class AddToTrip extends React.Component {
                 <div className="row">
                     <h5>Add to Trip</h5>
                 </div>
-                <div id="addToTrip" className="card deep-purple darken-1">
+                <div className="card indigo lighten-1 card-border">
                     <div className="card-content">
                         <form>
                             <div className="row">

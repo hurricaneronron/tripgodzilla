@@ -36,7 +36,7 @@ class Comment extends React.Component {
     }
     render () {
         return (
-            <div className="card">
+            <div className="card indigo accent-1 card-border">
                 <div className="card-content">
                 <span className="red-text" id="alert">
                 {this.state.alert}

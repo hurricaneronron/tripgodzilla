@@ -18,7 +18,7 @@ class Navbar extends React.Component {
   render () {
     return (
       <nav>
-        <div className="nav-wrapper blue darken-4">
+        <div className="nav-wrapper indigo darken-3">
           <span>
             
             <a href="/" className="brand-logo left"><img src={logo} id="nav-img" /> TripGodzilla</a>

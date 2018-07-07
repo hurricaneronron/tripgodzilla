@@ -41,7 +41,7 @@ class YourTrips extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="card">
+                <div className="card indigo lighten-4 card-border">
                     <div className="card-content">
                         <span className="card-title">{this.props.name}</span>
                         <p>{this.props.description}</p>

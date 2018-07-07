@@ -3,7 +3,7 @@ import axios from 'axios';
 
 class UserChatMessage extends React.Component {
     state = {
-        color: "blue darken-4"
+        color: "blue darken-2"
     }
     componentDidMount () {
        // var colorgrab = []

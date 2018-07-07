@@ -4,7 +4,7 @@ import footerLogo from "../styles/images/footer-logo.png"
 class Footer extends React.Component {
     render() {
         return (
-            <footer className="page-footer blue darken-4">
+            <footer className="page-footer indigo darken-3">
                  <div className="footer-copyright">
                     <div className="container">
                         <div className="row">
