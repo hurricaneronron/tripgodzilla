@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/Login.css";
 import axios from 'axios';
 import {Redirect} from "react-router-dom";
 
@@ -58,33 +57,33 @@ handleSignIn (e, value) {
             return <Redirect to='/Home' />
           }
         return(
-            <div className="container">
-                <div className="row">
-                    <h1 className="col s12">Sign In</h1>
-                </div>
-                <div className="row">
-                    <form className="col s6">
-                        <div className="row">
-                            <div className="input-field col s6">
-                                <input id="username" type="text" className="validate" ref="userIdInput" name="userId" onChange={this.handleInputChange}/>
-                                <label htmlFor="username" className="active">Enter Your Username</label>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="input-field col s6">
-                                <input id="password" type="password" className="validate" ref="passwordInput" name="password" onChange={this.handleInputChange}/>
-                                <label htmlFor="password" className="active">Enter Your Password</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div className="row">
-                    <div className="col s6">
-                    <button className="btn waves-effect waves-light btn-large" type="submit" name="action"  onClick={this.handleSignIn.bind(this)}>SIGN IN</button>
+            <div className="bg">
+                <div className="logCont container">
+                    <div className="row">
+                        <h1 className="col s12">Sign In</h1>
                     </div>
-                </div>
-                <div className="row red-text" id="alert">
-                    {this.state.alert}
+                    <div className="row">
+                        <form className="col s6">
+                            <div className="row">
+                                <div className="input-field col s6">
+                                    <input placeholder="Enter Your Username" id="username" type="text" className="validate" ref="userIdInput" name="userId" onChange={this.handleInputChange}/>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="input-field col s6">
+                                    <input placeholder="Enter Your Password" id="password" type="text" className="validate" ref="passwordInput" name="password" onChange={this.handleInputChange}/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div className="row">
+                        <div className="col s6">
+                            <button className="btn waves-effect waves-light btn-large yellow black-text" type="submit" name="action"  onClick={this.handleSignIn.bind(this)}>SIGN IN</button>
+                        </div>
+                    </div>
+                    <div className="row red-text" id="alert">
+                        {this.state.alert}
+                    </div>
                 </div>
             </div>
         )
