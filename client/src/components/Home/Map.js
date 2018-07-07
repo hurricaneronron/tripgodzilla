@@ -25,15 +25,16 @@ const MapWithASearchBox = compose(
   lifecycle({
     componentWillMount() {
       const refs = {}
+      console.log(this.props)
       this.setState({
         bounds: null,
         center: {
           lat: 41.9, lng: -87.624,
         },
         markers: [],
-        historical: false,
-        haunted: true, 
-        roadside: false,
+        historical: this.props.historical,
+        haunted: this.props.haunted, 
+        roadside: this.props.roadside,
         onMapMounted: (ref) => {
           refs.map = ref;
         },
@@ -59,7 +60,14 @@ const MapWithASearchBox = compose(
     },
     componentWillReceiveProps(nextProps) {
         let bounds = nextProps.passBounds
+        this.setState({
+            historical: nextProps.historical,
+            haunted: nextProps.haunted, 
+            roadside: nextProps.roadside
+        })
         console.log(bounds)
+        console.log(nextProps.haunted)
+        console.log(this.state.roadside)
         console.log(this.state.historical)
         const resultsArray = []
         const markerArray = []

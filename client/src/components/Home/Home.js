@@ -9,7 +9,6 @@ import MapWithASearchBox from "./Map"
 import axios from "axios"
 import LocationSearchInput from "../Search/Search"
 let newBounds
-let filterObj
 
 class Home extends React.Component {
     constructor() {
@@ -23,9 +22,9 @@ class Home extends React.Component {
             newBounds,
             passMarkers: [],
             historical: false,
-            haunted: true, 
+            haunted: false, 
             roadside: false,
-            toggleArray: []
+            checked1: false,
         }
 
     this.filterUpdate = this.filterUpdate.bind(this);
@@ -40,21 +39,17 @@ class Home extends React.Component {
 
     componentDidMount () {
         this.loadElements()
-        console.log("working")
     }
 
     loadElements = () => {
         axios.get('/users/' + localStorage.getItem("userId"))
         .then(r => {
-            console.log(r)
             let i
             var filtersArray = []
             for (i=0; i<r.data[0].filters.length; i++){
                 filtersArray.push({filter: r.data[0].filters[i]})
             }
-            console.log(filtersArray)
             this.setState({filters: filtersArray})
-            console.log(this.state.filters)
         })
         .catch(e => {
             console.log(e)
@@ -69,12 +64,19 @@ class Home extends React.Component {
         this.setState({newBounds: bounds})
     }
 
+    
+
     getVenues = (newVenue) => {
-        if (newVenue !== this.state.venues) {
-            this.setVenues(newVenue)
-            this.setState({passMarkers: newVenue})
+        if (!this.state.haunted && !this.state.historical && !this.state.roadside) {
+            //do nothing!
         } else {
-            //console.log("equal arg")
+            if (newVenue !== this.state.venues) {
+                this.setVenues(newVenue)
+                this.setState({passMarkers: newVenue})
+            } else {
+                this.setState({venues: null})
+                //console.log("equal arg")
+            }
         }
     }
 
@@ -115,13 +117,15 @@ class Home extends React.Component {
         .catch(err => console.log(err))
     }
 
-    filterUpdate = (value) => {
-        console.log(value)
-        console.log(this)
-        // this.setState(prevState => ({
-        //     haunted: !prevState.haunted
-        // }));
-        console.log(this.state.haunted)
+    filterUpdate = (e) => {
+        let currentFilter = e.target.attributes.id.value
+        if (currentFilter === 'haunted') {
+            this.setState({haunted: !this.state.haunted})
+        } else if (currentFilter === 'historical') {
+            this.setState({historical: !this.state.historical})
+        } else if (currentFilter === 'roadside') {
+            this.setState({roadside: !this.state.roadside})
+        }
     }
 
     // postRoadside = () => {
@@ -152,7 +156,10 @@ class Home extends React.Component {
                     return (<LeftSidebar 
                         key =  {filter.filter}
                         name = {filter.filter}
-                        filterUpdate = {this.filterUpdate.bind(this)}
+                        filterUpdate = {this.filterUpdate}
+                        checked1 = {this.state.checked1}
+                        checked= {this.state.isChecked}
+                        
                     />)
                 })}
                 </div>
@@ -178,6 +185,9 @@ class Home extends React.Component {
                                     passBounds = {this.state.newBounds}
                                     onDragEnd = {this.onDragEnd}
                                     getVenues = {this.getVenues}
+                                    roadside = {this.state.roadside}
+                                    haunted = {this.state.haunted}
+                                    historical = {this.state.historical}
                                 >
                                 </MapWithASearchBox>
                                 </div>
