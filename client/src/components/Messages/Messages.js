@@ -3,6 +3,7 @@ import Navbar from "../Navbar";
 import CurrentMessages from "./CurrentMessages";
 import MessageBox from "./MessageBox";
 import RightSidebar from "../RightSidebar";
+import Footer from "../Footer";
 import axios from 'axios';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -111,14 +112,14 @@ class Messages extends React.Component {
             <div>
                 <Navbar />
                 <div className="row">
-                    <div className="col s12 m9">
-                        <div className="container">
+                    <div className="col s12 m8 offset-m1">
+                        <div className="content-container">
                             <div className="row">
                                 <h5>Start New Chat</h5>
                             </div>
                             <div className="row">
                                 <div className="col s12 m5">
-                                <InputLabel htmlFor="age-simple">Select Friend: </InputLabel>
+                                <InputLabel style={{color : "black"}} htmlFor="age-simple">Select Friend: </InputLabel>
                                 <Select
                                     value={this.state.select}
                                     onChange={this.handleInputChange}
@@ -165,6 +166,7 @@ class Messages extends React.Component {
                     </div>
                     <RightSidebar />
                 </div>
+                <Footer />
             </div>
         )    
     }
