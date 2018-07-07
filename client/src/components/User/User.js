@@ -1,7 +1,7 @@
 import React from "react";
-import "../../styles/User.css";
 import Navbar from "../Navbar";
 import RightSidebar from "../RightSidebar";
+import Footer from "../Footer";
 import YourFilters from "./YourFilters";
 import YourFriends from "./YourFriends";
 import FriendRequests from "./FriendRequests";
@@ -221,8 +221,9 @@ class User extends React.Component {
             <div>
                 <Navbar />
                 <div className="row">
-                    <div className="col s12 m9">
-                        <div className="container">
+                    <div className="col s12 m8 offset-m1">
+                    <div className="content-container">
+                        <div className="row">
                             <div className="col s12 m4 left">
                                 <div className="row">
                                     <h5>Your Filters</h5>
@@ -235,7 +236,7 @@ class User extends React.Component {
                                     />)
                                 })}
                                 <div className="row">
-                                    <InputLabel htmlFor="age-simple">Add a Filter: </InputLabel>
+                                    <InputLabel htmlFor="age-simple" style={{color : "black"}}>Add a Filter: </InputLabel>
                                     <Select
                                         value={this.state.select}
                                         onChange={this.handleInputChange}
@@ -255,31 +256,33 @@ class User extends React.Component {
                                     <a className="waves-effect waves-light btn yellow black-text" onClick={this.handleAddFilter}>add</a>
                                 </div>
                             </div>
-                            <div className="col s12 m4 center">
+                            <div className="col s12 m4 right">
                                 <div className="row">
                                     <h5>Add A Friend</h5>
-                                    <div className="row">
-                                        <div className="input-field">
-                                            <input placeholder="Enter Username" id="username" type="text" ref="friendinput" name="requestee" onChange={this.handleInputChange}/>
-                                        </div>
+                                </div>
+                                <div className="row">
+                                    <div className="input-field">
+                                        <input placeholder="Enter Username" id="username" type="text" ref="friendinput" name="requestee" onChange={this.handleInputChange}/>
                                     </div>
-                                    <div className="row">
-                                        <a className="waves-effect waves-light btn yellow black-text" onClick={this.handleFriendRequest.bind(this)}>add</a>
-                                    </div>
+                                </div>
+                                <div className="row">
+                                    <a className="waves-effect waves-light btn yellow black-text" onClick={this.handleFriendRequest.bind(this)}>add</a>
+                                </div>
+                                <div className="row">
                                     <div className="red-text" id="alert">
                                         {this.state.alert}
                                     </div>
+                                </div>
+                                <div className="row">
                                     <div className="blue-text" id="alert">
                                         {this.state.alert3}
                                     </div>
                                 </div>
-                            </div>
-                            <div className="col s12 m3 right">
-                            <div className="row">
-                                <h5>Chat Color</h5>
-                            </div> 
                                 <div className="row">
-                                    <InputLabel htmlFor="age-simple">Set Your Favorite Color: </InputLabel>
+                                    <h5>Chat Color</h5>
+                                </div> 
+                                <div className="row">
+                                    <InputLabel htmlFor="age-simple" style={{color: 'black'}}>Set Your Favorite Color: </InputLabel>
                                     <Select
                                         value={this.state.color}
                                         onChange={this.handleInputChange}
@@ -303,40 +306,44 @@ class User extends React.Component {
                                 <div className="row">
                                     <a className="waves-effect waves-light btn yellow black-text" onClick={this.handleFaveColor}>set</a>
                                 </div>
-                                <div className="blue-text" id="alert">
-                                    {this.state.alert2}
+                                <div className="row">
+                                    <div className="blue-text" id="alert">
+                                        {this.state.alert2}
+                                    </div>
                                 </div>
                             </div>
                             <div className="row"></div>
                             <div className="divider"></div>
-                            <div className="row">
-                                <div className="col s12 m4 left">
-                                    <h5>Your Friends</h5>
-                                    {this.state.friends.map(friend => {
-                                    return (<YourFriends 
-                                        key =  {friend.friend}
-                                        name = {friend.friend}
-                                        refresh = {this.loadElements}
+                        </div>
+
+                        <div className="row">
+                            <div className="col s12 m4 left">
+                                <h5>Your Friends</h5>
+                                {this.state.friends.map(friend => {
+                                return (<YourFriends 
+                                    key =  {friend.friend}
+                                    name = {friend.friend}
+                                    refresh = {this.loadElements}
+                                />)
+                                })}
+                            </div>
+                            <div className="col s12 m4 right">
+                                <h5>Friend Requests</h5>
+                                {this.state.friendrequests.map(request => {
+                                return (<FriendRequests 
+                                    key =  {request.id}
+                                    id = {request.id}
+                                    requester = {request.requester}
+                                    refresh = {this.loadElements}
                                     />)
-                                    })}
-                                </div>
-                                <div className="col s12 m5 right">
-                                    <h5>Friend Requests</h5>
-                                    {this.state.friendrequests.map(request => {
-                                    return (<FriendRequests 
-                                        key =  {request.id}
-                                        id = {request.id}
-                                        requester = {request.requester}
-                                        refresh = {this.loadElements}
-                                        />)
-                                    })}
-                                </div>
+                                })}
                             </div>
                         </div>
                     </div>
+                    </div>
                 <RightSidebar />
                 </div>
-
+                <Footer />
             </div>
         )
     }
