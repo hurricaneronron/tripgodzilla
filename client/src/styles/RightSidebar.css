@@ -2,6 +2,12 @@
     width: 90%;
 }
 
+#addToTrip {
+    border-color: white;
+    border-style: solid;
+    border-width: 5px
+}
+
 /* label color */
 .input-field label {
 color: #000;

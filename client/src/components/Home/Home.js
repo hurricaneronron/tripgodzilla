@@ -4,6 +4,7 @@ import Navbar from "../Navbar";
 import LeftSidebar from "./LeftSidebar";
 import RightSidebar from "../RightSidebar";
 import Results from "../Home/Results";
+import Footer from "../Footer";
 import axios from 'axios'
 
 class Home extends React.Component {
@@ -40,9 +41,10 @@ class Home extends React.Component {
                 <div className="col s12 m2">
                 <div id="container">
                     <div className="row">
-                        <h6>Filters</h6>
+                        <h5>Filters</h5>
                     </div>
                 </div>
+                <div id="filterBox">
                 {this.state.filters.map(filter => {
                     return (<LeftSidebar 
                         key =  {filter.filter}
@@ -50,10 +52,11 @@ class Home extends React.Component {
                     />)
                 })}
                 </div>
+                </div>
                     <div className="col s12 m7">
                         <div id="container">
                             <div className="row">
-                                <h5>Search A Location</h5>
+                                <h4>Search A Location</h4>
                             </div>
                             <div className="row">
                                 <div className="input-field col s12 m7">
@@ -77,6 +80,7 @@ class Home extends React.Component {
                     </div>
                 <RightSidebar />
                 </div>
+                <Footer />
             </div>
         )
     }
