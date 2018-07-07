@@ -192,3 +192,7 @@ color: black !important;
   font-family: 'Bangers', cursive;
   font-size: 18px;
 }
+
+#alert {
+  text-shadow: 1px 1px white;
+}
