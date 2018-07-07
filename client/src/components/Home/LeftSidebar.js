@@ -5,11 +5,12 @@ const LeftSidebar = props =>
         <form action="#">
             <p>
                 <label>
-                    <input type="checkbox" className="filled-in" />
-                    <span>{props.name}</span>
+                    <input type="checkbox" value = {props.name} className="filled-in"/>
+                    <span id = {props.name} value = {props.checked1}  onClick={props.filterUpdate}>{props.name}</span>
                 </label>
             </p>
         </form>
     </div>
 
 export default LeftSidebar;
+
