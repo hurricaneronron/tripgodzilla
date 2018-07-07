@@ -1,5 +1,6 @@
 import React from "react";
-import axios from 'axios'
+import axios from 'axios';
+
 class YourTrips extends React.Component {
     state = {
         userArray: []
@@ -39,21 +40,21 @@ class YourTrips extends React.Component {
     }
     render() {
         return (
-    <div className="row">
-        <div className="card">
-            <div className="card-content">
-                <span className="card-title">{this.props.name}</span>
-                <p>{this.props.description}</p>
-                <p>Users: {this.props.userArray + " "}</p> {/*could potentially map this array again*/}
-            </div>
-            <div className="card-action">
-                <div className="row">
-                    <a className="waves-effect waves-light btn-small yellow black-text left" name= {this.props.id} onClick={this.handleViewTrip} href='/tripboard' >View Trip</a>
-                    <a className="waves-effect waves-light btn-small red darken-4 right" name={this.props.id} onClick={this.handleRemove} >Remove Trip</a>
+            <div className="row">
+                <div className="card">
+                    <div className="card-content">
+                        <span className="card-title">{this.props.name}</span>
+                        <p>{this.props.description}</p>
+                        <p>Users: {this.props.userArray + " "}</p> {/*could potentially map this array again*/}
+                    </div>
+                    <div className="card-action">
+                        <div className="row">
+                            <a className="waves-effect waves-light btn-small blue darken-4 left" name= {this.props.id} onClick={this.handleViewTrip} href='/tripboard' >View Trip</a>
+                            <a className="waves-effect waves-light btn-small red darken-4 right" name={this.props.id} onClick={this.handleRemove} >Remove Trip</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
         )
     }
 }
