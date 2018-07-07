@@ -1,7 +1,7 @@
 import React from "react";
+import "../../styles/TripsHome.css";
 import Navbar from "../Navbar";
 import RightSidebar from "../RightSidebar";
-import Footer from "../Footer"
 import YourTrips from "./YourTrips";
 import axios from 'axios';
 import request from 'request';
@@ -91,11 +91,10 @@ class TripsHome extends React.Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <a className="waves-effect waves-light btn-small yellow black-text" onClick={this.handleCreate}>CREATE</a>
+                                    <a className="waves-effect waves-light btn-small blue darken-4 right" onClick={this.handleCreate}>CREATE</a>
                                 </div>
                             </form>
-                            <div className="row"></div>
-                            <h5>Search Results</h5>
+                            <div className="divider"></div>
                             {this.state.pinboards.map(board => {
                                 return (<YourTrips 
                                     key =  {board.board}
@@ -109,7 +108,6 @@ class TripsHome extends React.Component {
                     </div>
                 <RightSidebar />
                 </div>
-                <Footer />
              </div>
         )
     }

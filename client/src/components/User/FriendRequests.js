@@ -1,7 +1,6 @@
 import React from "react";
 import axios from 'axios'
 import socketIOClient from 'socket.io-client';
-
 class FriendRequests extends React.Component {
         state = {
                 userFriends: [],
