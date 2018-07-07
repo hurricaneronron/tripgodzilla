@@ -13,6 +13,6 @@
     font-size: 36px;
 }
 
-.nav-list {
+.nav-list, #alert {
     font-family: 'Oswald', sans-serif;
 }

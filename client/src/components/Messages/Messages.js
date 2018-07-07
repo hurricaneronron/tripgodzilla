@@ -25,11 +25,11 @@ class Messages extends React.Component {
     }
 
     loadMessageBoxes = () => {
-        console.log("working")
-        console.log(this.state.userId)
+     //   console.log("working")
+     //   console.log(this.state.userId)
         axios.get('/chatboxes/' + this.state.userId)
             .then(r => {
-                console.log(r)
+            //    console.log(r)
                 let i
                 var boxArray = []
                 for (i=0; i<r.data.length; i++){

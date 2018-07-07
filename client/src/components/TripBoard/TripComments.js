@@ -8,7 +8,8 @@ import socketIOClient from 'socket.io-client';
 class TripComments extends React.Component {
     state = {
         commentsArray: [],
-        endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
+        endpoint: "http://localhost:4001", // this is where we are connecting to the sockets,
+   
     }
     componentDidMount () {
         this.loadElements()
@@ -17,15 +18,15 @@ class TripComments extends React.Component {
         console.log("working?")
         axios.get('tripcomments/' + localStorage.getItem('tripId'))
         .then(r => {
-            console.log("hello?")
-            console.log(r.data)
+           // console.log("hello?")
+           // console.log(r.data)
             var commentsArray = []
             let i
             for (i=0; i< r.data.length; i++){
-                commentsArray.push(r.data[i])
+                commentsArray.unshift(r.data[i])
             }
             this.setState({commentsArray: commentsArray})
-            console.log(this.state.commentsArray)
+           // console.log(this.state.commentsArray)
 
         })
         .catch(e => {
@@ -41,7 +42,7 @@ class TripComments extends React.Component {
         });
     };
     handleAdd = () => {
-        console.log(this.state.comment)
+       // console.log(this.state.comment)
         var userid = localStorage.getItem("userId")
         var tripid = localStorage.getItem("tripId")
         var timestamp = moment().format("LLLL")
@@ -101,6 +102,7 @@ class TripComments extends React.Component {
                     admin = {comment.admin}
                     comment = {comment.comment}
                     timestamp = {comment.timestamp}
+                    empty = ""
                     refresh = {this.loadElements}
                 />)
             })}

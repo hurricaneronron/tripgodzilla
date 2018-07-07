@@ -17,6 +17,9 @@ var usermodel = new Schema({
   },
   password: {
       type: String,
+  },
+  color: {
+    type: String
   }
  // friendsOnly: {
  //   type: Boolean,
