@@ -150,7 +150,7 @@ class Home extends React.Component {
                         <h5>Filters</h5>
                     </div>
                 </div>
-                <div id="filterBox" className="card deep-purple darken-1">
+                <div className="card indigo lighten-1 card-border">
                     <div className="card-content">
                         {this.state.filters.map(filter => {
                             return (<LeftSidebar 

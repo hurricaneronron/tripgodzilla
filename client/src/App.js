@@ -24,16 +24,18 @@ class App extends Component {
     //})
     return (
       <BrowserRouter>
-        <div id="bgColor" className="indigo lighten-1">
-        <Route exact path="/" component= {Welcome} />
-        <Route exact path="/Welcome" component= {Welcome} />
-        <Route path="/AccountCreation" component= {AccountCreation} />
-        <Route path="/Login" component= {Login} />
-        <Route path="/Home" component= {Home} />
-        <Route path="/User" component= {User} />
-        <Route path="/TripsHome" component= {TripsHome} />
-        <Route path="/Tripboard" component= {TripBoard} />
-        <Route path="/Messages" component= {Messages} />
+      <div id="bg">
+        <div className="overlay">
+          <Route exact path="/" component= {Welcome} />
+          <Route exact path="/Welcome" component= {Welcome} />
+          <Route path="/AccountCreation" component= {AccountCreation} />
+          <Route path="/Login" component= {Login} />
+          <Route path="/Home" component= {Home} />
+          <Route path="/User" component= {User} />
+          <Route path="/TripsHome" component= {TripsHome} />
+          <Route path="/Tripboard" component= {TripBoard} />
+          <Route path="/Messages" component= {Messages} />
+        </div>
       </div>
       </BrowserRouter>
     )

@@ -84,7 +84,7 @@ class MessageBox extends React.Component {
 
     render() {
         return(
-        <div id="msg-box" className="card purple darken-1">
+        <div id="msg-box" className="card indigo lighten-2">
             <div className="card-content" id="chatbox" style={{overflowY: 'scroll', height: 300}}>
             {this.state.messages.map(box => {
                 return (<UserChatMessage 
@@ -99,7 +99,7 @@ class MessageBox extends React.Component {
                     <i className="material-icons prefix">mode_edit</i>
                     <textarea id="icon_prefix2" className="materialize-textarea" name="message" ref="messageInput" onChange={this.handleInputChange}></textarea>
                 </div>
-                <a className="waves-effect waves-light btn-small blue darken-4" onClick={this.handleSend}><i className="material-icons right">send</i>SEND</a>
+                <a className="waves-effect waves-light btn-small yellow black-text" onClick={this.handleSend}><i className="material-icons right">send</i>SEND</a>
             </div>
         </div>
         )

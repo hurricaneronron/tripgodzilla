@@ -1,18 +1,32 @@
 /* Main App Styling */
 * {
   font-family: 'Oswald', sans-serif;
+  letter-spacing: 1.5px;
+  font-size: 18px;
 }
 
 .btn-large, .btn-small, .btn {
   font-family: 'Oswald', sans-serif;
 }
 
-#bgColor {
-  background-color: rgba(121, 134, 203, 1);
+#bg {
+  background-image: url(./styles/images/skyline.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.overlay {
+  background: rgba(255, 255, 255, 0.6)
 }
 
 .content-container {
   width: 90%;
+}
+
+.card-border {
+  border: solid 5px white
 }
 
 /* Forms */
@@ -104,7 +118,7 @@ color: black !important;
 
 /* Sign In */
 .logCont {
-  background-color: rgba(245, 245, 245, 0.8);
+  background-color: rgba(255, 255, 255, 0.6);
   height: 100vh;
   padding: 10px
 }
@@ -135,19 +149,8 @@ color: black !important;
   border: solid 5px white;
 }
 
-#filterBox {
-  border-color: white;
-  border-style: solid;
-  border-width: 5px
-}
-
 
 /* Right Sidebar */
-#addToTrip {
-  border-color: white;
-  border-style: solid;
-  border-width: 5px
-}
 
 
 /* User Page */
