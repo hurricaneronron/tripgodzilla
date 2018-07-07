@@ -1,5 +1,4 @@
 import React from "react";
-import "../../styles/Home.css";
 import Navbar from "../Navbar";
 import LeftSidebar from "./LeftSidebar";
 import RightSidebar from "../RightSidebar";
@@ -142,30 +141,32 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div id="background" className="deep purple darken-1">
+            <div>
                 <Navbar />
                 <div className="row">
                 <div className="col s12 m2">
-                <div id="container">
+                <div className="content-container">
                     <div className="row">
                         <h5>Filters</h5>
                     </div>
                 </div>
-                <div id="filterBox">
-                {this.state.filters.map(filter => {
-                    return (<LeftSidebar 
-                        key =  {filter.filter}
-                        name = {filter.filter}
-                        filterUpdate = {this.filterUpdate}
-                        checked1 = {this.state.checked1}
-                        checked= {this.state.isChecked}
-                        
-                    />)
-                })}
+                <div id="filterBox" className="card deep-purple darken-1">
+                    <div className="card-content">
+                        {this.state.filters.map(filter => {
+                            return (<LeftSidebar 
+                                key =  {filter.filter}
+                                name = {filter.filter}
+                                filterUpdate = {this.filterUpdate}
+                                checked1 = {this.state.checked1}
+                                checked= {this.state.isChecked}
+                                
+                            />)
+                        })}
+                    </div>
                 </div>
                 </div>
                 <div className="col s12 m7">
-                        <div id="container">
+                        <div className="content-container">
                             <div className="row">
                                 <div className="input-field col s12 m7">
                                     <LocationSearchInput 
@@ -178,7 +179,7 @@ class Home extends React.Component {
                                 {/* <a className="waves-effect waves-light btn yellow black-text col s3 m2 offset-s1 offset-m1" onClick={this.postHaunted}>search</a> */}
                             </div>
                             <div className="row">
-                                <div className="col s12 m12">
+                                <div className="col s12">
                                 <MapWithASearchBox
                                     searchLocation = {this.state.searchInput}
                                     getNewBounds = {this.getBounds}
@@ -192,6 +193,7 @@ class Home extends React.Component {
                                 </MapWithASearchBox>
                                 </div>
                             </div>
+                            <div className="row"></div>
                             <div className="row">
                                 <h5>Search Results</h5>
                                 {this.state.venues.map(venue => {
