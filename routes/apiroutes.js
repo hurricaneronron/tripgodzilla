@@ -46,6 +46,17 @@ Router.put('/users/filters/:userid', function (req, res) {
       console.log(e)
     })
 })
+//alter user info to set a favorite color
+Router.put('/users/favecolor/:userid', function (req, res) {
+  // req.params.id
+  db.User.update({userId: req.params.userid}, {$set:{color: req.body.color}})
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
 Router.post('/users', function (req, res) {
   // req.body
   db.User.create({
@@ -53,7 +64,8 @@ Router.post('/users', function (req, res) {
     name: req.body.name,
     filters: req.body.filters,
     friends: req.body.friends,
-    password: req.body.password
+    password: req.body.password,
+    color: req.body.color
  //   friendsOnly: req.body.friends
   })
     .then(r => {
@@ -326,6 +338,118 @@ Router.delete('/tripcomments/delete/:id', function (req, res) {
 // })
 // Router.delete('/users:id', function (req, res) {
 //   // req.params.id
+// })
+
+Router.get('/haunted', function (req, res) {
+  const bounds = JSON.parse(req.query.bounds)
+  const south = bounds.south
+  const west = bounds.west
+  const north = bounds.north
+  const east = bounds.east
+  db.Haunted.find({})
+    .where('longitude').gte(west).lte(east)
+    .where('latitude').gte(south).lte(north)
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+
+Router.post('/haunted', function (req, res) {
+  db.Haunted.create({
+    id: req.body.id,
+    title: req.body.title,
+    location: req.body.location
+  })
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+
+// Router.get('/national', function (req, res) {
+//   const bounds = JSON.parse(req.query.bounds)
+//   const south = bounds.south
+//   const west = bounds.west
+//   const north = bounds.north
+//   const east = bounds.east
+//   db.National.find({})
+//     .where('Lng').gte(west).lte(east)
+//     .where('Lat').gte(south).lte(north)
+//     .then(r => {
+//       res.json(r)
+//     })
+//     .catch(e => {
+//       console.log(e)
+//     })
+// })
+
+// Router.post('/national', function (req, res) {
+//   db.National.create({
+//     id: req.body.id,
+//     title: req.body.title,
+//     location: req.body.location
+//   })
+//     .then(r => {
+//       res.json(r)
+//     })
+//     .catch(e => {
+//       console.log(e)
+//     })
+// })
+
+Router.get('/historical', function (req, res) {
+  const bounds = JSON.parse(req.query.bounds)
+  const south = parseFloat(bounds.south)
+  const west = parseFloat(bounds.west)
+  const north = parseFloat(bounds.north)
+  const east = parseFloat(bounds.east)
+  db.Historical.find({
+  })
+    .where('latitude').gte(south).lte(north)
+    .where('longitude').gte(west).lte(east)
+    .exec()
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+
+Router.post('/historical', function (req, res) {
+  db.Historical.create({
+    id: req.body.id,
+    title: req.body.title,
+    location: req.body.location
+  })
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
+
+// Router.put('/historical/:id', function (req, res) {
+//   console.log(req.params.id)
+//   console.log(req.body)
+//   const newLocation = {
+//     lat: req.body.lat,
+//     lng: req.body.lng
+//   }
+//   // req.params.id
+//   db.Roadside.update( {_id: req.params.id}, {$set:{latitude: req.body.lat} })
+//     .then(r => {
+//       res.json(r)
+//     })
+//     .catch(e => {
+//       console.log(e)
+//     })
 // })
 
 Router.get('/', function(req, res) {

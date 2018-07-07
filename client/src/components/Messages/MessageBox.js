@@ -18,7 +18,7 @@ class MessageBox extends React.Component {
             this.setState({messages: newMessageArray})
             var x = document.getElementById("chatbox")
             x.scrollTop = x.scrollHeight
-            console.log("x", x.scrollTop)
+        //    console.log("x", x.scrollTop)
         })
         .catch(e => {
             console.log(e)
@@ -49,29 +49,37 @@ class MessageBox extends React.Component {
         console.log(this.state.selectedBox)
         var message = this.state.message
         var newMessageArray = []
-        axios.get('/chatboxes/indivbox/' + this.state.selectedBox)
-        .then(r => {
-            console.log(r)
-            newMessageArray= r.data[0].messages
-            newMessageArray.push({user: localStorage.getItem("userId"), message: message})
-            console.log(newMessageArray)
-            this.setState({messages: newMessageArray})
-            axios.put('/chatboxes/indivbox/' + this.state.selectedBox, {
-                messages: newMessageArray
-            })
+        var color = ""
+        axios.get('/users/' + localStorage.getItem("userId"))
             .then(r => {
-                console.log(r)
-                this.refs.messageInput.value=""
-                const socket = socketIOClient(this.state.endpoint)
-                socket.emit('update message', this.state.selectedBox)
+                color = r.data[0].color
+                axios.get('/chatboxes/indivbox/' + this.state.selectedBox)
+                .then(r => {
+                    console.log(r)
+                    newMessageArray= r.data[0].messages
+                    newMessageArray.push({user: localStorage.getItem("userId"), message: message, color: color})
+                    console.log(newMessageArray)
+                    this.setState({messages: newMessageArray})
+                    axios.put('/chatboxes/indivbox/' + this.state.selectedBox, {
+                        messages: newMessageArray
+                    })
+                    .then(r => {
+                        console.log(r)
+                        this.refs.messageInput.value=""
+                        const socket = socketIOClient(this.state.endpoint)
+                        socket.emit('update message', this.state.selectedBox)
+                    })
+                    .catch(e => {
+                        console.log(e)
+                    })
+                })
+                .catch(e => {
+                    console.log(e)
+                })
             })
             .catch(e => {
                 console.log(e)
             })
-        })
-        .catch(e => {
-            console.log(e)
-        })
     }
 
     render() {
@@ -82,6 +90,7 @@ class MessageBox extends React.Component {
                 return (<UserChatMessage 
                     user = {box.user}
                     message = {box.message}
+                    color = {box.color}
                 />)
             })}
             </div>

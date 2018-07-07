@@ -5,8 +5,10 @@ import socketIOClient from 'socket.io-client';
 class TripItems extends React.Component {
     state = {
         itemArray : [],
+        alert: "",
         endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
     }
+
     handleAdminDelete = event => {
         var admin = event.target.name
         var id = event.target.id
@@ -61,7 +63,14 @@ class TripItems extends React.Component {
             })
         }
         else {
-            alert(`Only the admin (${admin}) can delete trip items.`)
+            this.setState({alert:`Only the admin (${admin}) can delete trip items.`})
+            setTimeout(
+                function() {
+                    this.setState({alert:""});
+                }
+                .bind(this),
+                2500
+            );
         }
     }
     render () {
@@ -69,6 +78,9 @@ class TripItems extends React.Component {
 <div className="col s12 m4">
     <div className="card yellow lighten-3">
         <div className="card-content">
+        <span className="red-text" id="alert">
+        {this.state.alert}
+        </span>
             <a className="waves-effect waves-light red darken-4 btn-small right" id={this.props.id} data={this.props.item} datalink={this.props.link} datadescription={this.props.description} name={this.props.admin} onClick={this.handleAdminDelete.bind(this)}>X</a>
             <span className="card-title truncate">{this.props.item}</span>
             <a className="truncate" href={this.props.link} target="_blank">{this.props.link}</a>
