@@ -30,12 +30,6 @@ class AccountCreation extends React.Component {
         if(this.refs.roadside.checked) {
             userFilters.push("roadside")
         }
-        if(this.refs.other1.checked) {
-            userFilters.push("other1")
-        }
-        if(this.refs.other2.checked) {
-            userFilters.push("other2")
-        }
         console.log(userFilters)
         console.log(this.state)
         var id = this.state.userId
@@ -154,9 +148,9 @@ class AccountCreation extends React.Component {
                         <div className="col s6">
                         <button className="btn waves-effect waves-light btn-large yellow black-text" type="submit" name="action" onClick={this.handleAccountCreation.bind(this)}>CREATE YOUR ACCOUNT!<i className="material-icons right">send</i></button>
                         </div>
-                    </div>
-                    <div className="row red-text">
+                    <div className="row red-text text-darken-3" id="alert">
                         {this.state.alert}
+                    </div>
                     </div>
                     </div>
                 </div>

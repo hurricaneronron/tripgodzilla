@@ -19,6 +19,7 @@ class User extends React.Component {
         alert: "",
         alert2: "",
         alert3: "",
+        color: "",
         endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
     }
 
@@ -274,7 +275,7 @@ class User extends React.Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="blue-text" id="alert">
+                                    <div className="blue-text text-darken-3" id="alert">
                                         {this.state.alert3}
                                     </div>
                                 </div>
@@ -307,7 +308,7 @@ class User extends React.Component {
                                     <a className="waves-effect waves-light btn yellow black-text" onClick={this.handleFaveColor}>set</a>
                                 </div>
                                 <div className="row">
-                                    <div className="blue-text" id="alert">
+                                    <div className="blue-text text-darken-3" id="alert">
                                         {this.state.alert2}
                                     </div>
                                 </div>
