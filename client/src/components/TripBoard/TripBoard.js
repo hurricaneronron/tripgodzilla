@@ -18,6 +18,7 @@ class TripBoard extends React.Component {
         name: "",
         description: "",
         tripItems: [],
+        alert: "",
         endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
     }
     componentDidMount (){
@@ -29,6 +30,7 @@ class TripBoard extends React.Component {
         })
     }
     loadContent = () => {
+        this.setState({alert: ""})
         axios.get('/pinboards/indivboard/' + localStorage.getItem("tripId"))
         .then(r => {
             console.log("important", r)
@@ -91,11 +93,25 @@ class TripBoard extends React.Component {
                     })
                 }
                 else {
-                    alert("Your friend is already in this trip!")
+                    this.setState({alert: "Your friend is already in this trip!"})
+                    setTimeout(
+                        function() {
+                            this.setState({alert:""});
+                        }
+                        .bind(this),
+                        2500
+                    );
                 }
             } 
             else {
-                alert("Please select a friend to add!")
+                this.setState({alert: "Please select a friend to add!"})
+                setTimeout(
+                    function() {
+                        this.setState({alert:""});
+                    }
+                    .bind(this),
+                    2500
+                );
             }
         })
         .catch(e => {
@@ -145,6 +161,7 @@ class TripBoard extends React.Component {
                                 <div className="row">
                                     <a className="waves-effect waves-light btn yellow black-text col s3 m3" onClick={this.handleAddFriend.bind(this)}>add</a>
                                 </div>
+                                <div className="red-text" id="alert">{this.state.alert}</div>
                             </div>
                         </div>
                         <div className="row">

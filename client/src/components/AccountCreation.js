@@ -8,7 +8,8 @@ class AccountCreation extends React.Component {
         userId: "",
         username: "",
         password: "",
-        toLogin: false
+        toLogin: false,
+        alert: ""
     }
     handleInputChange = event => {
         // Destructure the name and value properties off of event.target
@@ -57,10 +58,10 @@ class AccountCreation extends React.Component {
                         name: name,
                         filters: userFilters,
                         friends: [],
-                        password: password
+                        password: password, 
+                        color: "blue darken-4"
                     })
                     .then(r => {
-                        alert(`Successful Account Creation, ${name}! Please Login.`)
                         console.log(r)
                     axios.get('/users')
                     .then(r => {
@@ -80,7 +81,7 @@ class AccountCreation extends React.Component {
                     console.log(e)
                 })
                 } else {
-                    alert("Sorry! That userId already exists. Please try another.")
+                    this.setState({alert: "Sorry! That User Id already exists. Please try another."})
                     this.refs.userIdInput.value=""
                     this.refs.userNameInput.value=""
                     this.refs.passwordInput.value=""
@@ -90,7 +91,7 @@ class AccountCreation extends React.Component {
                 console.log(e)
             })
         } else {
-            alert("Oops! One of the required fields does not have sufficient quantity!")
+            this.setState({alert: "Oops! One of the required fields does not have sufficient quantity!"})
         }
       };
     render() {
@@ -168,6 +169,9 @@ class AccountCreation extends React.Component {
                     <div className="col s6">
                     <button className="btn waves-effect waves-light btn-large yellow black-text" type="submit" name="action" onClick={this.handleAccountCreation.bind(this)}>CREATE YOUR ACCOUNT!<i className="material-icons right">send</i></button>
                     </div>
+                </div>
+                <div className="row red-text">
+                    {this.state.alert}
                 </div>
                 </div>
             </div>

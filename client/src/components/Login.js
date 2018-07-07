@@ -7,7 +7,8 @@ class Login extends React.Component {
 state = {
     userId: "",
     password: "",
-    toHome: false
+    toHome: false,
+    alert: ""
 }
 handleInputChange = event => {
     // Destructure the name and value properties off of event.target
@@ -25,10 +26,10 @@ handleSignIn (e, value) {
         .then(r => {
             console.log(r)
             if (r.data.length === 0) {
-                alert("Sorry, we don't recognize your User Id.")
+                this.setState({alert: "Sorry, we don't recognize your User Id."})
             }
             if(r.data[0].password === password) {
-                alert(`Successful login, ${r.data[0].name}!`)
+              //  alert(`Successful login, ${r.data[0].name}!`)
                 localStorage.setItem("id", r.data[0]._id)
                 localStorage.setItem("name", r.data[0].name)
                 localStorage.setItem("userId", r.data[0].userId)
@@ -45,7 +46,7 @@ handleSignIn (e, value) {
                 })
             }
             else{
-                alert("Sorry, some of your information is incorrect.")
+                this.setState({alert: "Sorry, some of your information is incorrect."})
             }
         })
         .catch(e => {
@@ -81,6 +82,9 @@ handleSignIn (e, value) {
                     <div className="col s6">
                     <button className="btn waves-effect waves-light btn-large" type="submit" name="action"  onClick={this.handleSignIn.bind(this)}>SIGN IN</button>
                     </div>
+                </div>
+                <div className="row red-text" id="alert">
+                    {this.state.alert}
                 </div>
             </div>
         )

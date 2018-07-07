@@ -17,6 +17,8 @@ class User extends React.Component {
         friends: [],
         friendrequests: [],
         alert: "",
+        alert2: "",
+        alert3: "",
         endpoint: "http://localhost:4001", // this is where we are connecting to the sockets
     }
 
@@ -93,12 +95,42 @@ class User extends React.Component {
                 }
                 else {
                     this.setState({alert: "You've already added that filter!"})
+                    setTimeout(
+                        function() {
+                            this.setState({alert:""});
+                        }
+                        .bind(this),
+                        2500
+                    );
                 }
         })
         .catch(e => {
                 console.log(e)
         })
     }
+    handleFaveColor = () => {
+        var changeColor = this.state.color
+        console.log(changeColor)
+        axios.put('/users/favecolor/' + localStorage.getItem('userId'), {
+            color: changeColor
+            })
+            .then(r => {
+                console.log(r)
+                this.loadElements()
+                this.setState({alert2: "Your new chat color is set!"})
+                this.refs.friendinput.value=""
+                setTimeout(
+                    function() {
+                        this.setState({alert2:""});
+                    }
+                    .bind(this),
+                    2500
+                );
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    }   
     handleFriendRequest = () => {
         console.log("working")
         var requestee = this.state.requestee
@@ -113,14 +145,21 @@ class User extends React.Component {
                         if (r.data.length > 0){
                         console.log("exists", r.data.length)
                         this.refs.friendinput.value=""
-                        this.setState({alert: "You have already sent this person a friend request."})
+                        this.setState({alert: "You've already sent that person a friend request."})
+                        setTimeout(
+                            function() {
+                                this.setState({alert:""});
+                            }
+                            .bind(this),
+                            2500
+                        );
                         } else {
                             axios.get(`/friendrequests/pending/${requestee}/${requester}`)
                             .then(r => {
                                 if (r.data.length > 0){
                                     console.log("exists", r.data.length)
                                     this.refs.friendinput.value=""
-                                    this.setState({alert: "This person has already sent you a friend request. Check your friend requests to accept!"})
+                                    this.setState({alert: "You already have a friend request from that user!"})
                                     } else {
                                     axios.post('/friendrequests', {
                                         requester: requester,
@@ -132,6 +171,14 @@ class User extends React.Component {
                                         const socket = socketIOClient(this.state.endpoint)
                                         socket.emit('update friendrequest', [requester, requestee])
                                         this.loadElements()
+                                        this.setState({alert3: "Friend request sent!"})
+                                        setTimeout(
+                                            function() {
+                                                this.setState({alert3:""});
+                                            }
+                                        .bind(this),
+                                            2500
+                                        );
                                     })
                                     .catch(e => {
                                     console.log(e)
@@ -143,6 +190,13 @@ class User extends React.Component {
                 } else {
                     this.setState({alert: "You're already friends with this user!"})
                     this.refs.friendinput.value=""
+                    setTimeout(
+                        function() {
+                            this.setState({alert:""});
+                        }
+                        .bind(this),
+                        2500
+                    );
                 }
             })
             .catch(e => {
@@ -169,7 +223,7 @@ class User extends React.Component {
                 <div className="row">
                     <div className="col s12 m9">
                         <div className="container">
-                            <div className="col s12 m5 left">
+                            <div className="col s12 m4 left">
                                 <div className="row">
                                     <h5>Your Filters</h5>
                                 </div> 
@@ -201,7 +255,7 @@ class User extends React.Component {
                                     <a className="waves-effect waves-light btn yellow black-text" onClick={this.handleAddFilter}>add</a>
                                 </div>
                             </div>
-                            <div className="col s12 m4 right">
+                            <div className="col s12 m4 center">
                                 <div className="row">
                                     <h5>Add A Friend</h5>
                                     <div className="row">
@@ -212,9 +266,45 @@ class User extends React.Component {
                                     <div className="row">
                                         <a className="waves-effect waves-light btn yellow black-text" onClick={this.handleFriendRequest.bind(this)}>add</a>
                                     </div>
-                                    <div className="row">
+                                    <div className="red-text" id="alert">
                                         {this.state.alert}
                                     </div>
+                                    <div className="blue-text" id="alert">
+                                        {this.state.alert3}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col s12 m3 right">
+                            <div className="row">
+                                <h5>Chat Color</h5>
+                            </div> 
+                                <div className="row">
+                                    <InputLabel htmlFor="age-simple">Set Your Favorite Color: </InputLabel>
+                                    <Select
+                                        value={this.state.color}
+                                        onChange={this.handleInputChange}
+                                        inputProps={{
+                                        name: 'color',
+                                        }}
+                                    >
+                                    <MenuItem value="">
+                                    <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value="red darken-4">Red</MenuItem>
+                                    <MenuItem value="pink darken-1">Pink</MenuItem>
+                                    <MenuItem value="orange darken-4">Orange</MenuItem>
+                                    <MenuItem value="green darken-3">Green</MenuItem>
+                                    <MenuItem value="cyan darken-3">Cyan</MenuItem>
+                                    <MenuItem value="blue darken-4">Blue</MenuItem>
+                                    <MenuItem value="purple darken-4">Purple</MenuItem>
+                                    <MenuItem value="grey darken-4">Black</MenuItem>
+                                    </Select>
+                                </div>
+                                <div className="row">
+                                    <a className="waves-effect waves-light btn yellow black-text" onClick={this.handleFaveColor}>set</a>
+                                </div>
+                                <div className="blue-text" id="alert">
+                                    {this.state.alert2}
                                 </div>
                             </div>
                             <div className="row"></div>
