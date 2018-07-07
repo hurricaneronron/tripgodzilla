@@ -46,6 +46,17 @@ Router.put('/users/filters/:userid', function (req, res) {
       console.log(e)
     })
 })
+//alter user info to set a favorite color
+Router.put('/users/favecolor/:userid', function (req, res) {
+  // req.params.id
+  db.User.update({userId: req.params.userid}, {$set:{color: req.body.color}})
+    .then(r => {
+      res.json(r)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+})
 Router.post('/users', function (req, res) {
   // req.body
   db.User.create({
@@ -53,7 +64,8 @@ Router.post('/users', function (req, res) {
     name: req.body.name,
     filters: req.body.filters,
     friends: req.body.friends,
-    password: req.body.password
+    password: req.body.password,
+    color: req.body.color
  //   friendsOnly: req.body.friends
   })
     .then(r => {

@@ -11,7 +11,7 @@ class Navbar extends React.Component {
     localStorage.removeItem("selectedBoxId")
     localStorage.removeItem("trip")
     localStorage.removeItem("tripId")
-    alert("Logout successful!")
+  //  alert("Logout successful!")
     return <Redirect to="/Welcome" />
   }
 

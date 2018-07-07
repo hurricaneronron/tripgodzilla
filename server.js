@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3001;
 const ioPORT = process.env.PORT || 4001;
 const app = express();
 const server = http.createServer(app);
+console.log("server", server)
 const io = socketIO(server)
 
 io.on("connection", socket => {
