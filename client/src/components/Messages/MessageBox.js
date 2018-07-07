@@ -1,5 +1,4 @@
 import React from "react";
-import "../../styles/MessageBox.css";
 import UserChatMessage from "./UserChatMessage";
 import axios from 'axios'
 import socketIOClient from 'socket.io-client'
